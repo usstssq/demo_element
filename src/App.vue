@@ -4,148 +4,28 @@
         <div>
             <el-button @click="startHacking">Start</el-button>
         </div> -->
-        <el-container>
-            <el-header>双禾盛中介代理非明资源平台</el-header>
-            <el-container>
-                <el-aside width="200px">Aside</el-aside>
-                <el-main>
-                    <el-row>
-                        <el-col :span="24">
-                            <div class="grid-content bg-purple-dark">
-                                <h2 style="text-align:left;line-height:40px">生产制造业</h2>
-                                <el-row :gutter="20">
-                                    <el-col :span="8">
-                                        <div class="grid-content bg-purple">
-                                            <el-card class="box-card" :body-style="{ padding: '0px' }">
-                                                <img src="./images/panpan.png" class="image">
-                                                <div style="padding: 14px; line-height:auto;">
-                                                    <span>盼盼安居门业有限责任公司，亚萨合莱旗下，始于1982年，防盗安全门标准修订起草单位，以生产安居产品为主业，新型建筑材料开发与制造为主导的股份制企业</span>
-                                                </div>
-                                            </el-card>
-                                        </div>
-                                    </el-col>
-                                    <el-col :span="8">
-                                        <div class="grid-content bg-purple">
-                                            <el-card class="box-card" :body-style="{ padding: '0px' }">
-                                                <img src="./images/panpan.png" class="image">
-                                                <div style="padding: 14px; line-height:auto;">
-                                                    <span>盼盼安居门业有限责任公司，亚萨合莱旗下，始于1982年，防盗安全门标准修订起草单位，以生产安居产品为主业，新型建筑材料开发与制造为主导的股份制企业</span>
-                                                </div>
-                                            </el-card>
-                                        </div>
-                                    </el-col>
-                                    <el-col :span="8">
-                                        <div class="grid-content bg-purple">
-                                            <el-card class="box-card" :body-style="{ padding: '0px' }">
-                                                <img src="./images/panpan.png" class="image">
-                                                <div style="padding: 14px; line-height:auto;">
-                                                    <span>盼盼安居门业有限责任公司，亚萨合莱旗下，始于1982年，防盗安全门标准修订起草单位，以生产安居产品为主业，新型建筑材料开发与制造为主导的股份制企业</span>
-                                                </div>
-                                            </el-card>
-                                        </div>
-                                    </el-col>
-                                </el-row>
-                            </div>
-                        </el-col>
-                    </el-row>
-                    <el-row>
-                        <el-col :span="24">
-                            <div class="grid-content bg-purple-dark">
-                                <h2 style="text-align:left;line-height:40px">工程设备机械</h2>
-                                <el-row :gutter="20">
-                                    <el-col :span="8">
-                                        <div class="grid-content bg-purple">
-                                            <el-card class="box-card" :body-style="{ padding: '0px' }">
-                                                <img src="./images/panpan.png" class="image">
-                                                <div style="padding: 14px; line-height:auto;">
-                                                    <span>盼盼安居门业有限责任公司，亚萨合莱旗下，始于1982年，防盗安全门标准修订起草单位，以生产安居产品为主业，新型建筑材料开发与制造为主导的股份制企业</span>
-                                                </div>
-                                            </el-card>
-                                        </div>
-                                    </el-col>
-                                    <el-col :span="8">
-                                        <div class="grid-content bg-purple">
-                                            <el-card class="box-card" :body-style="{ padding: '0px' }">
-                                                <img src="./images/panpan.png" class="image">
-                                                <div style="padding: 14px; line-height:auto;">
-                                                    <span>盼盼安居门业有限责任公司，亚萨合莱旗下，始于1982年，防盗安全门标准修订起草单位，以生产安居产品为主业，新型建筑材料开发与制造为主导的股份制企业</span>
-                                                </div>
-                                            </el-card>
-                                        </div>
-                                    </el-col>
-                                    <el-col :span="8">
-                                        <div class="grid-content bg-purple">
-                                            <el-card class="box-card" :body-style="{ padding: '0px' }">
-                                                <img src="./images/panpan.png" class="image">
-                                                <div style="padding: 14px; line-height:auto;">
-                                                    <span>盼盼安居门业有限责任公司，亚萨合莱旗下，始于1982年，防盗安全门标准修订起草单位，以生产安居产品为主业，新型建筑材料开发与制造为主导的股份制企业</span>
-                                                </div>
-                                            </el-card>
-                                        </div>
-                                    </el-col>
-                                </el-row>
-                            </div>
-                        </el-col>
-                    </el-row>
-                    <el-row>
-                        <el-col :span="24">
-                            <div class="grid-content bg-purple-dark">
-                                <h2 style="text-align:left;line-height:40px">服务网点</h2>
-                                <el-row :gutter="20">
-                                    <el-col :span="8">
-                                        <div class="grid-content bg-purple">
-                                            <el-card class="box-card" :body-style="{ padding: '0px' }">
-                                                <img src="./images/panpan.png" class="image">
-                                                <div style="padding: 14px; line-height:auto;">
-                                                    <span>盼盼安居门业有限责任公司，亚萨合莱旗下，始于1982年，防盗安全门标准修订起草单位，以生产安居产品为主业，新型建筑材料开发与制造为主导的股份制企业</span>
-                                                </div>
-                                            </el-card>
-                                        </div>
-                                    </el-col>
-                                    <el-col :span="8">
-                                        <div class="grid-content bg-purple">
-                                            <el-card class="box-card" :body-style="{ padding: '0px' }">
-                                                <img src="./images/panpan.png" class="image">
-                                                <div style="padding: 14px; line-height:auto;">
-                                                    <span>盼盼安居门业有限责任公司，亚萨合莱旗下，始于1982年，防盗安全门标准修订起草单位，以生产安居产品为主业，新型建筑材料开发与制造为主导的股份制企业</span>
-                                                </div>
-                                            </el-card>
-                                        </div>
-                                    </el-col>
-                                    <el-col :span="8">
-                                        <div class="grid-content bg-purple">
-                                            <el-card class="box-card" :body-style="{ padding: '0px' }">
-                                                <img src="./images/panpan.png" class="image">
-                                                <div style="padding: 14px; line-height:auto;">
-                                                    <span>盼盼安居门业有限责任公司，亚萨合莱旗下，始于1982年，防盗安全门标准修订起草单位，以生产安居产品为主业，新型建筑材料开发与制造为主导的股份制企业</span>
-                                                </div>
-                                            </el-card>
-                                        </div>
-                                    </el-col>
-                                </el-row>
-                            </div>
-                        </el-col>
-                    </el-row>
-                    <el-row>
-                        <el-col :span="12">
-                            <div class="grid-content bg-purple">
-                                国家滚动交易二手资源信息
-                            </div>
-                        </el-col>
-                        <el-col :span="12">
-                            <div class="grid-content bg-purple-light">
-                                国家实时新闻-商业新闻
-                            </div>
-                        </el-col>
-                    </el-row>
-                </el-main>
-            </el-container>
-        </el-container>
+        <test v-bind:seller="content"></test>
     </div>
 </template>
 
 <script>
+import Vue from 'vue'
+import Element from 'element-ui'
+import test from '~/components/common/test.vue'
+
+Vue.use(Element)
+
 export default {
+    data() {
+        return {
+            content:{
+                content:"hello this is props"
+            }
+        }
+    },
+    components: {
+      test
+    },
     methods: {
         startHacking () {
             this.$notify({
@@ -160,6 +40,9 @@ export default {
 </script>
 
 <style>
+    body {
+        margin:0;
+    }
     #app {
         font-family: Helvetica, sans-serif;
         text-align: center;
