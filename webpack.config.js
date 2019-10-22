@@ -4,12 +4,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const url = require('url')
 const publicPath = ''
 
-const appData = require('./data.json')
-const seller = appData.seller
-const goods = appData.goods
-const ratings = appData.ratings
+// const isDev = process.env.NODE_ENV =='development'
 
-const isDev = process.env.NODE_ENV =='development'
+const isDev = true
 
 module.exports = (options = {}) => ({
   entry: {
@@ -73,7 +70,7 @@ module.exports = (options = {}) => ({
     },
     extensions: ['.js', '.vue', '.json', '.css']
   },
-  devServer: {
+  devServer: {    
     host: '127.0.0.1',
     port: 8010,
     proxy: {
@@ -83,7 +80,7 @@ module.exports = (options = {}) => ({
         pathRewrite: {
           '^/apis': ''
         }
-      },
+      }
       // '/api/': {
       //   target: 'http://127.0.0.1:8080',
       //   changeOrigin: true,
@@ -91,26 +88,6 @@ module.exports = (options = {}) => ({
       //     '^/api': ''
       //   }
       // }
-    before(app) {
-      app.get('/api/seller', function (req, res) {
-        res.json({
-          errno: 0,
-          data: seller
-        })
-      })
-      app.get('/api/goods', function (req, res) {
-        res.json({
-          errno: 0,
-          data: goods
-        })
-      })
-      app.get('/api/ratings', function (req, res) {
-        res.json({
-          errno: 0,
-          data: ratings
-        })
-      })
-    }
     },
     historyApiFallback: {
       index: url.parse(options.dev ? '/assets/' : publicPath).pathname
