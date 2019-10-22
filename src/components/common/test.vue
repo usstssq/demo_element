@@ -53,7 +53,7 @@
 <script>
     import Vue from 'vue';
     import vHeader from '~/components/common/header.vue'
-    import productIndustry from '~/components/common/product_industry.vue'
+    import productIndustry from '~/components/product_industry/product_industry.vue'
     import { Container, Main, Row, Col, } from 'element-ui';
     import { getGoods } from '~/api/index.js'
     
