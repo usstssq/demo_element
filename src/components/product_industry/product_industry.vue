@@ -1,11 +1,11 @@
 <template>
     <div>
         <span> 生产制造业 </span>
-        <el-link href="https://element.eleme.io" target="_blank" type="primary">雨纷纷</el-link>
-        <el-divider direction="vertical"></el-divider>
-        <el-link href="https://element.eleme.io" target="_blank" type="primary">旧故里</el-link>
-        <el-divider direction="vertical"></el-divider>
-        <el-link href="https://element.eleme.io" target="_blank" type="primary">草木深</el-link>
+        <span v-for="(factory,index) in manufacture_list">
+            <el-link href="https://element.eleme.io" target="_blank" type="primary">{{factory}}</el-link>
+            <span v-if="(index+1) % 5 ==0"><br/></span>
+            <span v-else><el-divider direction="vertical"></el-divider></span>
+        </span>
     </div>
 </template>
 <script>
@@ -24,6 +24,18 @@
                 }
             }
         },
+        data:function(){
+            return{
+                manufacture_list:['XXX厂创','防盗门厂','电熔厂','起重机厂','气体厂','液压板厂','xxx厂','XXX厂',
+                    '起重机厂','气体厂','液压板厂','xxx厂','XXX厂',
+                    '起重机厂','气体厂','液压板厂','xxx厂','XXX厂',
+                    '起重机厂','气体厂','液压板厂','xxx厂','XXX厂',
+                    '起重机厂','气体厂','液压板厂','xxx厂','XXX厂',
+                    '起重机厂','气体厂','液压板厂','xxx厂','XXX厂',
+                    '起重机厂','气体厂','液压板厂','xxx厂','XXX厂',
+                    '起重机厂','气体厂','液压板厂','xxx厂','XXX厂']
+            };
+        }
     }
 </script>
 
