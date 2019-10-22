@@ -3,11 +3,10 @@
         <el-header>
             <span float="left">双禾盛中介代理非明资源平台</span>
             <div style="float:right">
-                <i class="el-icon-user-solid"></i>
-                <i class="el-icon-user"></i>                
-                <i class="el-icon-edit"></i>
-                <i class="el-icon-share"></i>
-                <i class="el-icon-delete"></i>
+                <span>
+                    <i class="el-icon-user-solid"></i>
+                    苏树清
+                </span>
             </div>
         </el-header>
     </el-container>
@@ -16,7 +15,8 @@
 <script>
     import Vue from 'vue';
     import { Container, Main, Row, Col, Icon } from 'element-ui';
-    
+    import 'element-ui/lib/theme-chalk/index.css';
+
     Vue.use(Container);
     Vue.use(Main);
     Vue.use(Row);
