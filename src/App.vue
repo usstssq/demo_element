@@ -33,7 +33,6 @@ export default {
     }
     #app {
         font-family: Helvetica, sans-serif;
-        text-align: center;
     }
   .el-row {
     margin-bottom: 20px;
