@@ -1,6 +1,6 @@
 <template>
     <div class="product_industry">
-        <h1> 生产制造业 </h1>
+        <h1> {{title}} </h1>
         <div>
             <span v-for="(factory,index) in manufacture_list">
                 <el-link :underline="false" href="https://element.eleme.io" target="_blank" type="primary">{{factory}}</el-link>
@@ -20,10 +20,10 @@
     export default {
         name: 'product_industry1',
         props: {
-            seller: {
-                type: Object,
-                default() {
-                    return {}
+            title: {
+                type: String,
+                default(){
+                    return ""
                 }
             }
         },

@@ -6,19 +6,15 @@
                 <el-col :span="24">
                     <div class="grid-content">
                         <el-divider></el-divider>
-                        <productIndustry></productIndustry>
+                        <productIndustry :title="product_industry_title"></productIndustry>
                     </div>
                 </el-col>
             </el-row>
             <el-row>
                 <el-col :span="24">
                     <div class="grid-content">
-                        工程设备机械
-                        <div>
-                            <span>青春是一个短暂的美梦, 当你醒来时, 它早已消失无踪</span>
-                            <el-divider></el-divider>
-                            <span>少量的邪恶足以抵消全部高贵的品质, 害得人声名狼藉</span>
-                        </div>
+                        <el-divider></el-divider>
+                        <productIndustry :title="eng_equipment_title"></productIndustry>
                     </div>
                 </el-col>
             </el-row>
@@ -68,6 +64,12 @@
         components: {
             vHeader,
             productIndustry
+        },
+        data(){
+            return {
+                product_industry_title:"生产制造业",
+                eng_equipment_title:"工程设备机械"
+            }
         },
         props: {
             seller: {
