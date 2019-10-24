@@ -20,6 +20,14 @@
             </el-row>
             <el-row>
                 <el-col :span="24">
+                    <div class="grid-content">
+                        <el-divider></el-divider>
+                        <productIndustry :title="list_overseas_companies"></productIndustry>
+                    </div>
+                </el-col>
+            </el-row>
+            <el-row>
+                <el-col :span="24">
                     <div class="grid-content bg-purple-dark">
                         服务网点
                     </div>
@@ -68,7 +76,8 @@
         data(){
             return {
                 product_industry_title:"生产制造业",
-                eng_equipment_title:"工程设备机械"
+                eng_equipment_title:"工程设备机械",
+                list_overseas_companies:"驻外公司名单"
             }
         },
         props: {
