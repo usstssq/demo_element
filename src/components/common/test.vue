@@ -4,6 +4,11 @@
         <div id="htmlBody">
             <el-row>
                 <el-col :span="24">
+                    <countryIntro :title="countryin_info_title" :countryInfoContent="country_info_content"></countryIntro>
+                </el-col>
+            </el-row>
+            <el-row>
+                <el-col :span="24">
                     <div class="grid-content">
                         <el-divider></el-divider>
                         <productIndustry :title="product_industry_title"></productIndustry>
@@ -60,7 +65,9 @@
     import Vue from 'vue';
     import vHeader from '~/components/common/header.vue'
     import productIndustry from '~/components/product_industry/product_industry.vue'
-    import { Container, Main, Row, Col, } from 'element-ui';
+    import countryIntro from '~/components/country_intro/country_intro.vue'
+    import { Container, Main, Row, Col, } from 'element-ui'
+    import { getCountryInfo } from '~/api/index.js'
     
     Vue.use(Container);
     Vue.use(Main);
@@ -71,13 +78,16 @@
         name: 'v-test',
         components: {
             vHeader,
-            productIndustry
+            productIndustry,
+            countryIntro
         },
         data(){
             return {
                 product_industry_title:"生产制造业",
                 eng_equipment_title:"工程设备机械",
-                list_overseas_companies:"驻外公司名单"
+                list_overseas_companies:"驻外公司名单",
+                countryin_info_title:"",
+                country_info_content:""
             }
         },
         props: {
@@ -87,7 +97,18 @@
                     return {}
                 }
             }
-        }
+        },
+        created() {
+            this._getProductIndustry()
+        },
+        methods: {
+            _getProductIndustry() {
+                getCountryInfo().then((countryInfo) => {
+                    this.country_info_content = countryInfo.country_info_content,
+                    this.countryin_info_title = countryInfo.title
+                })
+            }
+        },
     }
 
     // import 'element-ui/lib/theme-chalk/index.css';
