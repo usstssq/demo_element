@@ -34,16 +34,6 @@
             }
         },
     }
-
-    // import 'element-ui/lib/theme-chalk/index.css';
-    // import App from '/Users/sushuqing/code/learn/element-starter-master/src/App.vue';
-
-    // Vue.use(ElementUI);
-
-    // new Vue({
-    //   el: '#app',
-    //   render: h => h(App)
-    // });
 </script>
 
 

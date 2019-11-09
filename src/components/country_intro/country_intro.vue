@@ -51,7 +51,6 @@
     }
 
     .header_country_style{
-    /*  background-color: darkgoldenrod;*/
         height:100%;
         padding-bottom: 0px;
         border-bottom: 2px solid #1E38AC;
@@ -68,7 +67,6 @@
     .country_content{
         text-align: left;
         font-size: 13px;
-    /*  margin-top: -10px;*/
     }
 </style>
 

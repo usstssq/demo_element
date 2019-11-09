@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <test v-bind:seller="content"></test>
+        <test></test>
     </div>
 </template>
 
@@ -13,11 +13,6 @@ Vue.use(Element)
 
 export default {
     data() {
-        return {
-            content:{
-                content:"hello this is props"
-            }
-        }
     },
     components: {
       test

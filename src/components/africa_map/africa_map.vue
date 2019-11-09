@@ -1,7 +1,6 @@
 <template>
     <div class="africa_map">
           <div id="content">
-            <div class="info">Hover over a country</div>
             <svg width="620px" height="600px">
               <g class="map"></g>
               <g class="bounding-box"><rect></rect></g>
@@ -21,7 +20,6 @@
     
     // Show tooltip on hover
     function showDetail(event, content) {
-
         // show tooltip with information from the __data__ property of the element
         let x_hover = 0;
         let y_hover = 0;
@@ -54,18 +52,17 @@
 
     // Hide tooltip on hover
     function hideDetail() {
-
         // hide tooltip
         return tooltip.style("visibility", "hidden");
     }
 
     const projection = d3.geoMercator()
-      .scale(400)
-      .translate([200, 280])
-      .center([0, 5]);
+        .scale(400)
+        .translate([200, 280])
+        .center([0, 5]);
 
     const geoGenerator = d3.geoPath()
-      .projection(projection);
+        .projection(projection);
 
     function bindHover() {
         document.body.addEventListener('mousemove', function(e) {
@@ -75,7 +72,6 @@
                 showDetail(e, content);
             }
         });
-
         document.body.addEventListener('mouseout', function(e) {
             if (e.target.nodeName == 'path') hideDetail();
         });
@@ -119,26 +115,23 @@
 
 <style>
 body {
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 14px;
-  color: #333;
-}
-#content .info {
-  height: 20px;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 14px;
+    color: #333;
 }
 #content .map path {
-  stroke: #fff;
+    stroke: #fff;
 }
 #content .bounding-box rect {
-  fill: none;
-  stroke: #333;
-  stroke-dasharray: 2,1;
+    fill: none;
+    stroke: #333;
+    stroke-dasharray: 2,1;
 }
 #content .centroid {
-  display: none;
+    display: none;
 }
 #content .centroid circle {
-  fill: red;
+    fill: red;
 }
 .tooltip {
     top: 100px;
