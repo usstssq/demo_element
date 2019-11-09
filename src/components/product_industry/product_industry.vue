@@ -1,13 +1,7 @@
 <template>
     <div class="product_industry">
-        <h1> {{title}} </h1>
-        <div>
-            <span v-for="(factory,index) in manufacture_list">
-                <el-link :underline="false" href="https://element.eleme.io" target="_blank" type="primary">{{factory}}</el-link>
-                <span v-if="(index+1) % 5 ==0"><br/></span>
-                <span v-else><el-divider direction="vertical"></el-divider></span>
-            </span>
-        </div>
+        <h3> {{title}} </h3>
+        <el-link v-for="(factory,index) in manufacture_list" :underline="false" :href="factory.url_address" target="_blank" type="primary">{{factory.company_name}}</el-link>
     </div>
 </template>
 <script>
@@ -39,7 +33,12 @@
         },
         data(){
             return{
-                manufacture_list:[]
+                manufacture_list:[
+                    {
+                        "company_name":"XXX厂创",
+                        "url_address":"http://www.baidu.com"
+                    }
+                ]
             };
         }
     }
@@ -48,6 +47,11 @@
 <style>
     a:hover{
         background : #eee
+    }
+    .el-link--inner{
+        display:inline-block;
+        padding: 2px 5px;
+        font-size:16px;
     }
 </style>
 

@@ -1,7 +1,7 @@
 <template>
     <el-container>
         <el-header>
-            <span float="left">双禾盛中介代理非明资源平台</span>
+            <span style="font-size:1.5em">双禾盛中介代理资源平台</span>
             <div style="float:right">
                 <span>
                     <i class="el-icon-user-solid"></i>

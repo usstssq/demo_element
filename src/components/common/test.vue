@@ -10,7 +10,6 @@
             <el-row>
                 <el-col :span="24">
                     <div class="grid-content">
-                        <el-divider></el-divider>
                         <productIndustry :title="product_industry_title"></productIndustry>
                     </div>
                 </el-col>
@@ -18,7 +17,6 @@
             <el-row>
                 <el-col :span="24">
                     <div class="grid-content">
-                        <el-divider></el-divider>
                         <productIndustry :title="eng_equipment_title"></productIndustry>
                     </div>
                 </el-col>
@@ -32,19 +30,10 @@
                 </el-col>
             </el-row>
             <el-row>
-                <el-col :span="24">
-                    <div class="grid-content bg-purple-dark">
-                        服务网点
-                    </div>
+                <el-col :span="18">
+                    <secondHandResource :title = "second_hand_resource_title" :secondHandResourceContent = "second_hand_resource_content"></secondHandResource>
                 </el-col>
-            </el-row>
-            <el-row>
-                <el-col :span="12">
-                    <div class="grid-content bg-purple">
-                        国家滚动交易二手资源信息
-                    </div>
-                </el-col>
-                <el-col :span="12">
+                <el-col :span="6">
                     <div class="grid-content bg-purple-light">
                         国家实时新闻-商业新闻
                     </div>
@@ -52,9 +41,7 @@
             </el-row>
             <el-row>
                 <el-col>
-                    <div v-if="seller.content">
-                        {{seller.content}}
-                    </div>
+                    <africaMap></africaMap>
                 </el-col>
             </el-row>
         </div>
@@ -66,8 +53,10 @@
     import vHeader from '~/components/common/header.vue'
     import productIndustry from '~/components/product_industry/product_industry.vue'
     import countryIntro from '~/components/country_intro/country_intro.vue'
+    import secondHandResource from '~/components/second_hand_resource/second_hand_resource.vue'
+    import africaMap from '~/components/africa_map/africa_map.vue'
     import { Container, Main, Row, Col, } from 'element-ui'
-    import { getCountryInfo } from '~/api/index.js'
+    import { getCountryInfo,getSenHadRes } from '~/api/index.js'
     
     Vue.use(Container);
     Vue.use(Main);
@@ -79,7 +68,9 @@
         components: {
             vHeader,
             productIndustry,
-            countryIntro
+            countryIntro,
+            secondHandResource,
+            africaMap
         },
         data(){
             return {
@@ -87,7 +78,15 @@
                 eng_equipment_title:"工程设备机械",
                 list_overseas_companies:"驻外公司名单",
                 countryin_info_title:"",
-                country_info_content:""
+                country_info_content:"",
+                second_hand_resource_title:"",
+                second_hand_resource_content:[{
+                    "index":1,
+                    "type":"求购",
+                    "content":"包装厂处理半自动打钉机1台，17年的设备，广东产，进价28.6万",
+                    "num":1,
+                    "tel":13000000001
+                }]
             }
         },
         props: {
@@ -99,13 +98,20 @@
             }
         },
         created() {
-            this._getProductIndustry()
+            this._getProductIndustry(),
+            this._getSecondHandResource()
         },
         methods: {
             _getProductIndustry() {
                 getCountryInfo().then((countryInfo) => {
                     this.country_info_content = countryInfo.country_info_content,
                     this.countryin_info_title = countryInfo.title
+                })
+            },
+            _getSecondHandResource() {
+                getSenHadRes().then((secondHadResourceInfo) => {
+                    this.second_hand_resource_title = secondHadResourceInfo.title,
+                    this.second_hand_resource_content = secondHadResourceInfo.second_hand_resource_content
                 })
             }
         },
@@ -124,8 +130,8 @@
 
 <style>
     #htmlBody{
-        width:1040px;
-        margin:0 auto;
+        min-width:576px;
+        margin:0 80px;
     }
 </style>
 
