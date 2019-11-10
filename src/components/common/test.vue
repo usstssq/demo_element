@@ -10,14 +10,14 @@
             <el-row>
                 <el-col :span="24">
                     <div class="grid-content">
-                        <productIndustry :title="product_industry_title"></productIndustry>
+                        <productIndustry :comTitle="product_industry_title" :linkInfo="product_link_info"></productIndustry>
                     </div>
                 </el-col>
             </el-row>
             <el-row>
                 <el-col :span="24">
                     <div class="grid-content">
-                        <productIndustry :title="eng_equipment_title"></productIndustry>
+                        <productIndustry :comTitle="eng_equipment_title" :linkInfo="eng_equipment_link_info"></productIndustry>
                     </div>
                 </el-col>
             </el-row>
@@ -25,18 +25,16 @@
                 <el-col :span="24">
                     <div class="grid-content">
                         <el-divider></el-divider>
-                        <productIndustry :title="list_overseas_companies"></productIndustry>
+                        <productIndustry :comTitle="list_overseas_companies" :linkInfo="list_overseas_link_info"></productIndustry>
                     </div>
                 </el-col>
             </el-row>
             <el-row>
                 <el-col :span="18">
-                    <secondHandResource :title = "second_hand_resource_title" :secondHandResourceContent = "second_hand_resource_content"></secondHandResource>
+                    <secondHandResource :comTitle = "second_hand_resource_title" :secondHandResourceContent = "second_hand_resource_content" :linkInfo="second_hand_resource_link_info"></secondHandResource>
                 </el-col>
                 <el-col :span="6">
-                    <div class="grid-content bg-purple-light">
-                        国家实时新闻-商业新闻
-                    </div>
+                    <news :comTitle="news_title" :linkInfo="news_link_info" :newsArr="news_arr"></news>
                 </el-col>
             </el-row>
             <el-row>
@@ -55,8 +53,9 @@
     import countryIntro from '~/components/country_intro/country_intro.vue'
     import secondHandResource from '~/components/second_hand_resource/second_hand_resource.vue'
     import africaMap from '~/components/africa_map/africa_map.vue'
+    import news from '~/components/news/news.vue'
     import { Container, Main, Row, Col, } from 'element-ui'
-    import { getCountryInfo,getSenHadRes } from '~/api/index.js'
+    import { getCountryInfo,getSenHadRes,getNews } from '~/api/index.js'
     
     Vue.use(Container);
     Vue.use(Main);
@@ -70,22 +69,49 @@
             productIndustry,
             countryIntro,
             secondHandResource,
-            africaMap
+            africaMap,
+            news
         },
         data(){
             return {
                 product_industry_title:"生产制造业",
+                product_link_info:{
+                    "link_content":"更多",
+                    "link_href":"https://www.hupu.com/"
+                },
                 eng_equipment_title:"工程设备机械",
+                eng_equipment_link_info:{
+                    "link_content":"更多",
+                    "link_href":"https://www.hupu.com/"
+                },
                 list_overseas_companies:"驻外公司名单",
+                list_overseas_link_info:{
+                    "link_content":"更多",
+                    "link_href":"https://www.hupu.com/"
+                },
                 countryin_info_title:"",
                 country_info_content:"",
                 second_hand_resource_title:"",
+                second_hand_resource_link_info:{
+                    "link_content":"更多",
+                    "link_href":"https://www.hupu.com/"                    
+                },
                 second_hand_resource_content:[{
                     "index":1,
                     "type":"求购",
                     "content":"包装厂处理半自动打钉机1台，17年的设备，广东产，进价28.6万",
                     "num":1,
                     "tel":13000000001
+                }],
+                news_title:"",
+                news_link_info:{
+                    "link_content":"更多",
+                    "link_href":"https://www.hupu.com/"
+                },
+                news_arr:[{
+                    "index":1,
+                    "content":"驻南使领馆提醒在南中国公民和企业注意安全防范",
+                    "update_time":"2018-04-26"
                 }]
             }
         },
@@ -99,7 +125,8 @@
         },
         created() {
             this._getProductIndustry(),
-            this._getSecondHandResource()
+            this._getSecondHandResource(),
+            this._getNews()
         },
         methods: {
             _getProductIndustry() {
@@ -112,6 +139,12 @@
                 getSenHadRes().then((secondHadResourceInfo) => {
                     this.second_hand_resource_title = secondHadResourceInfo.title,
                     this.second_hand_resource_content = secondHadResourceInfo.second_hand_resource_content
+                })
+            },
+            _getNews(){
+                getNews().then((news)=>{
+                    this.news_title = news.news_title,
+                    this.news_arr = news.news_content
                 })
             }
         },

@@ -1,37 +1,48 @@
 <template>
     <div class="news">
-        <h3> {{title}} </h3>
+        <comTitle :title="comTitle" :linkInfo="linkInfo"></comTitle>
         <ul>
-            <li></li>
-        </ul>        
+            <li v-for="news_item in newsArr">{{news_item.content}}{{news_item.update_time}}</li>
+        </ul>
     </div>
 </template>
 <script>
     import Vue from 'vue';
     import { Divider } from 'element-ui';
+    import comTitle from '~/components/common/comTitle.vue'
     import 'element-ui/lib/theme-chalk/index.css';
 
     Vue.use(Divider);
     export default {
         name: 'second_had_resource',
+        components: {
+            comTitle
+        },
         props: {
-            title: {
+            comTitle: {
                 type: String,
                 default(){
                     return ""
                 }
             },
-            secondHandResourceContent:{
+            linkInfo:{
+                type:Object,
+                default(){
+                    return {
+                        "link_content":"更多",
+                        "link_href":"http://www.bing.com"
+                    }
+                }
+            },
+            newsArr:{
                 type:Array,
                 default(){
-                    return 
-                        [{
+                    return [{
                             "index":1,
-                            "type":"求购",
-                            "content":"包装厂处理半自动打钉机1台，17年的设备，广东产，进价28.6万",
-                            "num":1,
-                            "tel":13000000001
-                        }]
+                            "content":"驻南使领馆提醒在南中国公民和企业注意安全防范",
+                            "update_time":"2018-04-26"
+                        }
+                    ]
                 }
             }
         }

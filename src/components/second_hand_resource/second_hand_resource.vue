@@ -1,14 +1,16 @@
 <template>
     <div class="second_had_resource">
-        <h3> {{title}} </h3>
+        <comTitle :title="comTitle" :linkInfo="linkInfo"></comTitle>
         <el-table :data="secondHandResourceContent" stripe border fit style="width: 100%">
             <el-table-column
                 prop="index"
-                label="编号">
+                label="编号"
+                width="40">
             </el-table-column>
             <el-table-column
                 prop="type"
-                label="类型">
+                label="类型"
+                width="60">
             </el-table-column>
             <el-table-column
                 prop="content"
@@ -16,11 +18,13 @@
             </el-table-column>
             <el-table-column
                 prop="num"
-                label="数量">
+                label="数量"
+                width="40">
             </el-table-column>
             <el-table-column
                 prop="tel"
-                label="联系方式">
+                label="联系方式"
+                width="110">
             </el-table-column>
         </el-table>
     </div>
@@ -28,16 +32,29 @@
 <script>
     import Vue from 'vue';
     import { Divider } from 'element-ui';
+    import comTitle from '~/components/common/comTitle.vue'
     import 'element-ui/lib/theme-chalk/index.css';
 
     Vue.use(Divider);
     export default {
         name: 'second_had_resource',
+        components: {
+            comTitle
+        },
         props: {
-            title: {
+            comTitle: {
                 type: String,
                 default(){
                     return ""
+                }
+            },
+            linkInfo:{
+                type:Object,
+                default(){
+                    return {
+                        "link_content":"更多",
+                        "link_href":"http://www.bing.com"
+                    }
                 }
             },
             secondHandResourceContent:{
@@ -58,6 +75,9 @@
 </script>
 
 <style>
+    .second_had_resource{
+        width:95%;
+    }
     a:hover{
         background : #eee
     }

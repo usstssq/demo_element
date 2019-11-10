@@ -12,8 +12,6 @@ import test from '~/components/common/test.vue'
 Vue.use(Element)
 
 export default {
-    data() {
-    },
     components: {
       test
     },

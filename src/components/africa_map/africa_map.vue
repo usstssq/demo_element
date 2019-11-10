@@ -93,7 +93,7 @@
             .attr("d",geoGenerator)
             .on("mouseover",function(d,i){
                 d3.select(this)
-                    .attr("fill","yellow");
+                    .attr("fill","#BDBE46");
             })
             .on("mouseout",function(d,i){
                 d3.select(this)
@@ -141,12 +141,12 @@ body {
     left: 100px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    background: #333;
+    background: #F6F6F6;
     opacity: .9;
-    color: white;
+    color: #413F40;
     padding: 10px;
-    min-width: 375px;
-    min-width: 36.75vmin;
+    min-width: 200px;
+    min-width: 26.75vmin;
     font-size: 2.25vmin;
     line-height: 24pt;
     font-family: 'Lora', serif;
@@ -163,7 +163,7 @@ body {
     opacity: .9;
     border-top: 8px solid transparent;
     border-bottom: 8px solid transparent;
-    border-left: 8px solid #333;
+    border-left: 8px solid #F6F6F6;
     right: -8px;
     top: 65px;
 }
@@ -178,7 +178,7 @@ body {
     border-top: 8px solid transparent;
     border-bottom: 8px solid transparent;
     left: -8px;
-    border-right: 8px solid #333;
+    border-right: 8px solid #F6F6F6;
     top: 65px;
 }
 </style>

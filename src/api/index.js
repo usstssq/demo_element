@@ -7,6 +7,7 @@ const getRatings = get('api/ratings')
 const getCountryInfo = get('api/country_info')
 const getSenHadRes = get('api/second_hand_resource')
 const getAfricaMap = get('api/africa_map')
+const getNews = get('api/news')
 
 export {
     getProducIndustry,
@@ -15,5 +16,6 @@ export {
     getRatings,
     getCountryInfo,
     getSenHadRes,
-    getAfricaMap
+    getAfricaMap,
+    getNews
 }
