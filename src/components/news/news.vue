@@ -2,7 +2,7 @@
     <div class="news">
         <comTitle :title="comTitle" :linkInfo="linkInfo"></comTitle>
         <ul>
-            <li v-for="news_item in newsArr">{{news_item.content}}{{news_item.update_time}}</li>
+            <li v-for="news_item in newsArr">{{news_item.content}}({{news_item.update_time}})</li>
         </ul>
     </div>
 </template>

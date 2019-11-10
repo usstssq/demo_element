@@ -35,8 +35,14 @@
         },
     }
 </script>
-
-
-
+<style>
+    .el-header, 
+    .el-footer {
+        background-color: #5284E6;
+        color: #fff;
+        text-align: center;
+        line-height: 60px;
+    }
+</style>
 
 

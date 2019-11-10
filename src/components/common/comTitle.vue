@@ -36,7 +36,7 @@
 <style>
     .com_title{
         background-color:#F8F8F8;
-        padding:15px 0 15px 0;
+        padding:15px 0;
     }
     .com_title h3{
         margin:0 0;
@@ -47,8 +47,8 @@
         text-decoration:none;
     }
     .com_title a:hover{
-        background : #eee;
         text-decoration:none;
+        background-color: #F8F8F8;
     }
     .el-link--inner{
         display:inline-block;
