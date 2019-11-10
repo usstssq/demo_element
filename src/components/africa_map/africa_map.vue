@@ -2,9 +2,13 @@
     <div class="africa_map">
           <div id="content">
             <svg width="620px" height="600px">
-              <g class="map"></g>
-              <g class="bounding-box"><rect></rect></g>
-              <g class="centroid"><circle r="4"></circle></g>
+                <g class="map"></g>
+                <g class="bounding-box">
+                    <rect></rect>
+                </g>
+                <g class="centroid">
+                    <circle r="4"></circle>
+                </g>
             </svg>
         </div>
     </div>
@@ -14,7 +18,6 @@
     import { getAfricaMap } from '~/api/index.js'
 
     var data = d3.range(0, 9);
-    var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
 
     let tooltip = d3.select("body").append("div").style("position", "absolute").style("z-index", "10").style("visibility", "hidden").attr("class", "tooltip");
     
@@ -85,7 +88,7 @@
             .attr("stroke","#000")
             .attr("stroke-width",1)
             .attr("fill",function(d,i){
-                return colorScale(i)
+                return d.info.background_color
             })
             .attr("d",geoGenerator)
             .on("mouseover",function(d,i){
@@ -94,7 +97,7 @@
             })
             .on("mouseout",function(d,i){
                 d3.select(this)
-                    .attr("fill",colorScale(i));
+                    .attr("fill",d.info.background_color);
             });
             bindHover();
     }
