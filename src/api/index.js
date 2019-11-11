@@ -1,13 +1,13 @@
 import { get } from './helpers'
 
-const getProducIndustry = get('api/product_industry')
-const getSeller = get('api/seller')
-const getGoods = get('api/goods')
-const getRatings = get('api/ratings')
-const getCountryInfo = get('api/country_info')
-const getSenHadRes = get('api/second_hand_resource')
-const getAfricaMap = get('api/africa_map')
-const getNews = get('api/news')
+const getProducIndustry = get('trade/product_industry')
+const getSeller = get('trade/seller')
+const getGoods = get('trade/goods')
+const getRatings = get('trade/ratings')
+const getCountryInfo = get('trade/country_info')
+const getSenHadRes = get('trade/second_hand_resource')
+const getAfricaMap = get('trade/africa_map')
+const getNews = get('trade/news')
 
 export {
     getProducIndustry,

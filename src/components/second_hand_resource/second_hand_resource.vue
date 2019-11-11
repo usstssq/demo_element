@@ -5,7 +5,7 @@
             <el-table-column
                 prop="index"
                 label="编号"
-                width="40">
+                width="50">
             </el-table-column>
             <el-table-column
                 prop="type"
@@ -19,7 +19,7 @@
             <el-table-column
                 prop="num"
                 label="数量"
-                width="40">
+                width="50">
             </el-table-column>
             <el-table-column
                 prop="tel"
@@ -86,7 +86,10 @@
         padding: 2px 5px;
         font-size:16px;
     }
-    .el-table__row td div{
+    .el-table__row .cell{
+        width:100%;
+        white-space:nowrap;
+        word-break:keep-all;
         text-overflow:ellipsis;
     }
 </style>

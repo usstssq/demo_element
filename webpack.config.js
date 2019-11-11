@@ -74,11 +74,11 @@ module.exports = (options = {}) => ({
     host: '127.0.0.1',
     port: 8010,
     proxy: {
-      '/apis/': {
-        target: 'http://ustbhuangyi.com/sell/',
+      '/trade/': {
+        target: 'http://localhost:3000/',
         changeOrigin: true,
         pathRewrite: {
-          '^/apis': ''
+          '^/trade': '/trade'
         }
       }
       // '/api/': {
