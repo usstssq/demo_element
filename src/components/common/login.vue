@@ -5,7 +5,7 @@
             登录
         </span>
         <el-dialog
-            title="提示"
+            title="登录"
             :visible.sync="centerDialogVisible"
             width="30%"
             center>
