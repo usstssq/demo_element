@@ -15,7 +15,7 @@
     import 'element-ui/lib/theme-chalk/index.css'
 
     export default {
-        name: 'product_industry1',
+        name: 'countryIntro',
         props: {
             title: {
                 type: String,

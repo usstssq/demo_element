@@ -3,10 +3,7 @@
         <el-header>
             <span style="font-size:1.5em">双禾盛中介代理资源平台</span>
             <div style="float:right">
-                <span>
-                    <i class="el-icon-user-solid"></i>
-                    苏树清
-                </span>
+                <comLogin></comLogin>
             </div>
         </el-header>
     </el-container>
@@ -15,6 +12,7 @@
 <script>
     import Vue from 'vue';
     import { Container, Main, Row, Col, Icon } from 'element-ui';
+    import comLogin from '~/components/common/login.vue'
     import 'element-ui/lib/theme-chalk/index.css';
 
     Vue.use(Container);
@@ -25,6 +23,9 @@
 
     export default {
         name: 'vHeader',
+        components: {
+            comLogin
+        },
         props: {
             seller: {
                 type: Object,

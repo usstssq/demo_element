@@ -13,7 +13,7 @@
 
     Vue.use(Divider);
     export default {
-        name: 'product_industry1',
+        name: 'productIndustry',
         components: {
             comTitle
         },
