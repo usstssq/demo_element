@@ -1,6 +1,8 @@
 <template>
     <el-container>
         <el-header>
+            <router-link to="/homePage">首页</router-link>
+            <router-link to="/countryDetail">国家详情</router-link>
             <span style="font-size:1.5em">双禾盛中介代理资源平台</span>
             <div style="float:right">
                 <comLogin></comLogin>

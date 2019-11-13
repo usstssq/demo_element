@@ -8,6 +8,7 @@ const getCountryInfo = get('trade/country_info')
 const getSenHadRes = get('trade/second_hand_resource')
 const getAfricaMap = get('trade/africa_map')
 const getNews = get('trade/news')
+const getCompanyInfo = get('trade/company_info')
 
 export {
     getProducIndustry,
@@ -17,5 +18,6 @@ export {
     getCountryInfo,
     getSenHadRes,
     getAfricaMap,
-    getNews
+    getNews,
+    getCompanyInfo
 }

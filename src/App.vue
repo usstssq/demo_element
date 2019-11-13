@@ -1,23 +1,15 @@
 <template>
     <div id="app">
-        <test></test>
+         <router-view></router-view>
     </div>
 </template>
 
 <script>
-import Vue from 'vue'
-import Element from 'element-ui'
-import test from '~/components/common/test.vue'
-
-Vue.use(Element)
 
 export default {
-    components: {
-      test
-    },
-    methods: {
-    }
+    name: 'app',
 }
+
 </script>
 
 <style>
