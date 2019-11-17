@@ -31,7 +31,7 @@
     var data = d3.range(0, 9);
 
     let tooltip = d3.select("body").append("div").style("position", "absolute").style("z-index", "10").style("visibility", "hidden").attr("class", "tooltip");
-    
+
     // Show tooltip on hover
     function showDetail(event, content) {
         // show tooltip with information from the __data__ property of the element
@@ -42,13 +42,16 @@
         let tooltipHeight = parseInt(tooltip.style('height'));
         let classed, notClassed;
 
-        if (event.pageX > document.body.clientWidth / 2) {
+        let right_margin = document.body.clientWidth - 80;
+
+        // 30: 鼠标与tooltip 的距离
+        // 20: tooltip的左右padding之和
+        if(event.pageX + 30 + 20 + tooltipWidth > right_margin){
             x_hover = tooltipWidth + 30;
             classed = 'right';
             notClassed = 'left';
-        }
-        else {
-            x_hover = -30;
+        }else{
+            x_hover = - 30;
             classed = 'left';
             notClassed = 'right';
         }
