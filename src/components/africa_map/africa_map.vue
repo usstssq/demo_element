@@ -80,10 +80,15 @@
     function bindHover() {
         document.body.addEventListener('mousemove', function(e) {
             if (e.target.nodeName == 'path') {
-                // let d = d3.select(e.target).data()[0]["info"];
+                let d_info = d3.select(e.target).data()[0]["info"];
                 // let content = `name:${d.name}<br> gender:${d.gender}<br>tel:${d.tel}`;
-                let d = d3.select(e.target).data()[0]["properties"];
-                let content = `${d.name_cn}`;
+                let d_prop = d3.select(e.target).data()[0]["properties"];
+                let content = "";
+                if (d_info.have_orgin_flag==true){
+                    content = `${d_prop.name_cn}`;
+                }else {
+                    content = "该国家平台暂未开放诚招合作代理"
+                }                
                 showDetail(e, content);
             }
         });
