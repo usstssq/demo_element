@@ -47,7 +47,7 @@
         // 30: 鼠标与tooltip 的距离
         // 20: tooltip的左右padding之和
         if(event.pageX + 30 + 20 + tooltipWidth > right_margin){
-            x_hover = tooltipWidth + 30;
+            x_hover = tooltipWidth + 40;
             classed = 'right';
             notClassed = 'left';
         }else{
