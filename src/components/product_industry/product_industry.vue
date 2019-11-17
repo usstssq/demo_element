@@ -2,33 +2,37 @@
     <div class="product_industry">
         <comTitle :title="comTitle" :linkInfo="linkInfo"></comTitle>
         <div class="product_industry_content">
-            <el-col v-for="(factory,index) in manufacture_list.general" :span="4">
-                <el-link class="imgscale-top" :underline="false" :href="factory.url_address" target="_blank" type="primary">
-                    <img :src="factory.icon_address" width="16" height="16" class="nav-icon"></img>
-                    {{factory.company_name}}
-                </el-link>
-            </el-col>
-            <el-col class = "vip" v-for="(factory,index) in manufacture_list.vip" :span="4">
-                <div class="vip_content imgscale-top boxshodow-hover">
-                    <a :underline="false" :href="factory.url_address" target="_blank" type="primary">
-                        <div class="img_box">
-                            <div class="imgscale">
-                                <img :src="factory.vip_icon_address" :alt="factory.company_name">
+            <el-row>
+                <el-col v-for="(factory,index) in manufacture_list.general" :span="4">
+                    <el-link class="imgscale-top" :underline="false" :href="factory.url_address" target="_blank" type="primary">
+                        <img :src="factory.icon_address" width="16" height="16" class="nav-icon"></img>
+                        {{factory.company_name}}
+                    </el-link>
+                </el-col>
+            </el-row>
+            <el-row>
+                <el-col class = "vip" v-for="(factory,index) in manufacture_list.vip" :span="4">
+                    <div class="vip_content imgscale-top boxshodow-hover">
+                        <a :underline="false" :href="factory.url_address" target="_blank" type="primary">
+                            <div class="img_box">
+                                <div class="imgscale">
+                                    <img :src="factory.vip_icon_address" :alt="factory.company_name">
+                                </div>
                             </div>
-                        </div>
-                        <div class="title_box">
-                            <div class="title ellipsis-2">
-                                {{factory.company_name}}
+                            <div class="title_box">
+                                <div class="title ellipsis-2">
+                                    {{factory.company_name}}
+                                </div>
                             </div>
-                        </div>
-                        <div class="com_tel">
-                            <div class="ellipsis-2">
-                                发财热线: {{factory.com_tel}}
+                            <div class="com_tel">
+                                <div class="ellipsis-2">
+                                    发财热线: {{factory.com_tel}}
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-            </el-col>
+                        </a>
+                    </div>
+                </el-col>
+            </el-row>
         </div>
     </div>
 </template>

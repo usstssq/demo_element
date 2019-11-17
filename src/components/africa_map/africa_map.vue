@@ -1,6 +1,17 @@
 <template>
     <div class="africa_map">
           <div id="content">
+            <div class="desc">
+                <div class="have_flag_out">
+                    <div class="have_flag"></div>
+                    <div class="have_flag_content">存有办事处的国家</div>
+                </div>
+                <div class="unhave_flag_out">
+                    <div class="have_flag unhave_flag">
+                    </div>
+                    <div class="have_flag_content">未存有办事处诚招代理</div>
+                </div>
+            </div>
             <svg width="620px" height="600px">
                 <g class="map"></g>
                 <g class="bounding-box">
@@ -43,7 +54,6 @@
         }
 
         y_hover = (document.body.clientHeight - event.pageY < (tooltipHeight + 4)) ? event.pageY - (tooltipHeight + 4) : event.pageY - tooltipHeight/2;
-
         return tooltip
             .classed(classed, true)
             .classed(notClassed, false)
@@ -70,8 +80,10 @@
     function bindHover() {
         document.body.addEventListener('mousemove', function(e) {
             if (e.target.nodeName == 'path') {
-                let d = d3.select(e.target).data()[0]["info"];
-                let content = `name:${d.name}<br> gender:${d.gender}<br>tel:${d.tel}`;
+                // let d = d3.select(e.target).data()[0]["info"];
+                // let content = `name:${d.name}<br> gender:${d.gender}<br>tel:${d.tel}`;
+                let d = d3.select(e.target).data()[0]["properties"];
+                let content = `${d.name_cn}`;
                 showDetail(e, content);
             }
         });
@@ -89,6 +101,13 @@
             .attr("stroke-width",1)
             .attr("fill",function(d,i){
                 return d.info.background_color
+            })
+            .style("opacity", function(d,i){
+                if(d.info.have_orgin_flag==false){
+                    return 0.5
+                }else{
+                    return 1
+                }
             })
             .attr("d",geoGenerator)
             .on("mouseover",function(d,i){
@@ -122,6 +141,11 @@ body {
     font-size: 14px;
     color: #333;
 }
+#content{
+    position:relative;
+    margin-left:20px;
+    background-color:#DDDFE6;
+}
 #content .map path {
     stroke: #fff;
 }
@@ -145,8 +169,8 @@ body {
     opacity: .9;
     color: #413F40;
     padding: 10px;
-    min-width: 200px;
-    min-width: 26.75vmin;
+    min-width: 50px;
+    min-width: 12.75vmin;
     font-size: 2.25vmin;
     line-height: 24pt;
     font-family: 'Lora', serif;
@@ -165,7 +189,7 @@ body {
     border-bottom: 8px solid transparent;
     border-left: 8px solid #F6F6F6;
     right: -8px;
-    top: 65px;
+    top: 20px;
 }
 
 .tooltip.left::before {
@@ -179,7 +203,39 @@ body {
     border-bottom: 8px solid transparent;
     left: -8px;
     border-right: 8px solid #F6F6F6;
-    top: 65px;
+    top: 20px;
+}
+.unhave_flag_out {
+    position:relative;
+    overflow:hidden;
+}
+.have_flag_out{
+    position:relative;
+    overflow:hidden;
+}
+.desc{
+    width:200px;
+    height:60px;
+    position:absolute;
+    bottom:50px;
+    left:50px;
+    line-height:25px;
+}
+.desc .have_flag{
+    float:left;
+    width:30px;
+    height:20px;
+    margin:5px;
+    background-color:#E29471;
+    line-height:25px;
+}
+.desc .unhave_flag{
+    opacity:0.5;
+    line-height:25px;
+}
+.have_flag_content{
+    float:left;
+    line-height:30px;
 }
 </style>
 

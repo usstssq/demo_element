@@ -37,11 +37,6 @@
                     <news :comTitle="news_title" :linkInfo="news_link_info" :newsArr="news_arr"></news>
                 </el-col>
             </el-row>
-            <el-row>
-                <el-col>
-                    <africaMap></africaMap>
-                </el-col>
-            </el-row>
         </div>
     </div>
 </template>
