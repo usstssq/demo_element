@@ -1,4 +1,4 @@
-import { get } from './helpers'
+import { get,post } from './helpers'
 
 const getProducIndustry = get('trade/product_industry')
 const getSeller = get('trade/seller')
@@ -9,6 +9,7 @@ const getSenHadRes = get('trade/second_hand_resource')
 const getAfricaMap = get('trade/africa_map')
 const getNews = get('trade/news')
 const getCompanyInfo = get('trade/company_info')
+const login = post('trade/login')
 
 export {
     getProducIndustry,
@@ -19,5 +20,6 @@ export {
     getSenHadRes,
     getAfricaMap,
     getNews,
-    getCompanyInfo
+    getCompanyInfo,
+    login
 }

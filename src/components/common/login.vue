@@ -28,8 +28,9 @@
 <script>
     import Vue from 'vue';
     import { Dialog } from 'element-ui';
+    import { login } from '~/api/index.js'
     import 'element-ui/lib/theme-chalk/index.css';
-
+    let storage=window.localStorage;
     Vue.use(Dialog);
 
     export default {
@@ -45,9 +46,12 @@
         },
         methods: {
             loginf() {
-                getCountryInfo().then((countryInfo) => {
-                    this.country_info_content = countryInfo.country_info_content,
-                    this.countryin_info_title = countryInfo.title
+                login({username:this.form.name,pwd:this.form.pass}).then((loginInfo)=>{
+                    if(loginInfo.success==1){
+                        storage["username"]=loginInfo.userInfo.username;
+                        storage["token"]=loginInfo.userInfo.token;
+                    }
+                    // console.log(`loginInfo.success:${loginInfo.success}`)
                 })
             }
         }
