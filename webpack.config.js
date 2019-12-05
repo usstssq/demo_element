@@ -75,10 +75,10 @@ module.exports = (options = {}) => ({
     port: 8010,
     proxy: {
       '/trade/': {
-        target: 'http://localhost:3000/',
+        target: 'http://localhost:8080/',
         changeOrigin: true,
         pathRewrite: {
-          '^/trade': '/trade'
+          '^/trade': '/shs'
         }
       }
       // '/api/': {
