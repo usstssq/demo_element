@@ -3,7 +3,7 @@
         <comTitle :title="comTitle" :linkInfo="linkInfo"></comTitle>
         <div class="product_industry_content">
             <el-row>
-                <el-col v-for="(factory,index) in manufacture_list.general" :span="4">
+                <el-col v-for="(factory,index) in data_list.general" :span="4">
                     <el-link class="imgscale-top" :underline="false" :href="factory.url_address" target="_blank" type="primary">
                         <img :src="factory.icon_address" width="16" height="16" class="nav-icon"></img>
                         {{factory.company_name}}
@@ -11,7 +11,7 @@
                 </el-col>
             </el-row>
             <el-row>
-                <el-col class = "vip" v-for="(factory,index) in manufacture_list.vip" :span="4">
+                <el-col class = "vip" v-for="(factory,index) in data_list.vip" :span="4">
                     <div class="vip_content imgscale-top boxshodow-hover">
                         <a :underline="false" :href="factory.url_address" target="_blank" type="primary">
                             <div class="img_box">
@@ -41,7 +41,7 @@
     import { Divider, Row, Col, } from 'element-ui'
     import 'element-ui/lib/theme-chalk/index.css';
     import comTitle from '~/components/common/comTitle.vue'
-    import { getProducIndustry } from '~/api/index.js'
+    // import { getProducIndustry } from '~/api/index.js'
 
     Vue.use(Divider);
     export default {
@@ -64,40 +64,62 @@
                         "link_href":"http://www.bing.com"
                     }
                 }
+            },
+            data_list:{
+                type:Object,
+                default(){
+                    return {
+                        "general":[
+                            {
+                                "company_name":"XXX厂创",
+                                "url_address":"http://www.baidu.com",
+                                "icon_address":"https://ss2.bdstatic.com/kfoZeXSm1A5BphGlnYG/icon/95490.png"
+                            }
+                        ],
+                        "vip":[
+                            {
+                                "company_name":"XXX厂创",
+                                "url_address":"http://www.baidu.com",
+                                "vip_icon_address":"https://b3.hoopchina.com.cn/images/logo2017/v1/hp_logo_sports.png",
+                                "com_tel":"18818262629"
+                            }
+                        ]
+                    }
+                }
             }
-        },
-        created() {
-            this._getProductIndustry()
-        },
-        methods: {
-            _getProductIndustry() {
-                getProducIndustry().then((productIndustry) => {
-                    this.manufacture_list = productIndustry.manufacture_list
-                })
-            }
-        },
-        data(){
-            return{
-                manufacture_list:{
-                    "general":[
-                        {
-                            "company_name":"XXX厂创",
-                            "url_address":"http://www.baidu.com",
-                            "icon_address":"https://ss2.bdstatic.com/kfoZeXSm1A5BphGlnYG/icon/95490.png"
-                        }
-                    ],
-                    "vip":[
-                        {
-                            "company_name":"XXX厂创",
-                            "url_address":"http://www.baidu.com",
-                            "vip_icon_address":"https://b3.hoopchina.com.cn/images/logo2017/v1/hp_logo_sports.png",
-                            "com_tel":"18818262629"
-                        }
-                    ]
-                },
-                com_title:""
-            };
         }
+        // created() {
+            // this._getProductIndustry()
+        // },
+        // methods: {
+            // _getProductIndustry() {
+            //     getProducIndustry().then((productIndustry) => {
+            //         this.manufacture_list = productIndustry.manufacture_list
+            //     })
+            // }
+        // },
+        // data(){
+            // return{
+            //     manufacture_list:{
+            //         "general":[
+            //             {
+            //                 "company_name":"XXX厂创",
+            //                 "url_address":"http://www.baidu.com",
+            //                 "icon_address":"https://ss2.bdstatic.com/kfoZeXSm1A5BphGlnYG/icon/95490.png"
+            //             }
+            //         ],
+            //         "vip":[
+            //             {
+            //                 "company_name":"XXX厂创",
+            //                 "url_address":"http://www.baidu.com",
+            //                 "vip_icon_address":"https://b3.hoopchina.com.cn/images/logo2017/v1/hp_logo_sports.png",
+            //                 "com_tel":"18818262629"
+            //             }
+            //         ]
+            //     },
+            //     com_title:""
+            // };
+        // }
     }
 </script>
 

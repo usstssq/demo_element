@@ -3,21 +3,24 @@
         <v-header></v-header>
         <div id="htmlBody">
             <el-row>
-                <el-col :span="24">
+                <el-col :span="16">
+                    <countryIntro :title="countryin_info_title" :countryInfoContent="country_info_content"></countryIntro>
+                </el-col>
+                <el-col :span="8">
                     <countryIntro :title="countryin_info_title" :countryInfoContent="country_info_content"></countryIntro>
                 </el-col>
             </el-row>
             <el-row>
                 <el-col :span="24">
                     <div class="grid-content">
-                        <productIndustry :comTitle="product_industry_title" :linkInfo="product_link_info"></productIndustry>
+                        <productIndustry :data_list="manufacture_list" :comTitle="product_industry_title" :linkInfo="product_link_info"></productIndustry>
                     </div>
                 </el-col>
             </el-row>
             <el-row>
                 <el-col :span="24">
                     <div class="grid-content">
-                        <productIndustry :comTitle="eng_equipment_title" :linkInfo="eng_equipment_link_info"></productIndustry>
+                        <productIndustry :data_list="manufacture_list" :comTitle="eng_equipment_title" :linkInfo="eng_equipment_link_info"></productIndustry>
                     </div>
                 </el-col>
             </el-row>
@@ -25,13 +28,21 @@
                 <el-col :span="24">
                     <div class="grid-content">
                         <el-divider></el-divider>
-                        <productIndustry :comTitle="list_overseas_companies" :linkInfo="list_overseas_link_info"></productIndustry>
+                        <productIndustry :data_list="manufacture_list" :comTitle="overseas_companies_title" :linkInfo="list_overseas_link_info"></productIndustry>
+                    </div>
+                </el-col>
+            </el-row>
+            <el-row>
+                <el-col :span="24">
+                    <div class="grid-content">
+                        <el-divider></el-divider>
+                        <productIndustry :data_list="manufacture_list" :comTitle="local_companies_title" :linkInfo="list_local_company_link_info"></productIndustry>
                     </div>
                 </el-col>
             </el-row>
             <el-row>
                 <el-col :span="18">
-                    <secondHandResource :comTitle = "second_hand_resource_title" :secondHandResourceContent = "second_hand_resource_content" :linkInfo="second_hand_resource_link_info"></secondHandResource>
+                    <secondHandResource :comTitle="second_hand_resource_title" :secondHandResourceContent="second_hand_resource_content" :linkInfo="second_hand_resource_link_info"></secondHandResource>
                 </el-col>
                 <el-col :span="6">
                     <news :comTitle="news_title" :linkInfo="news_link_info" :newsArr="news_arr"></news>
@@ -50,7 +61,7 @@
     import africaMap from '~/components/africa_map/africa_map.vue'
     import news from '~/components/news/news.vue'
     import { Container, Main, Row, Col, } from 'element-ui'
-    import { getCountryInfo,getSenHadRes,getNews } from '~/api/index.js'
+    import { getCountryInfo,getSenHadRes,getNews,getProducIndustry } from '~/api/index.js'
     
     Vue.use(Container);
     Vue.use(Main);
@@ -79,8 +90,13 @@
                     "link_content":"更多",
                     "link_href":"https://www.hupu.com/"
                 },
-                list_overseas_companies:"驻外公司名单",
+                overseas_companies_title:"驻外公司名单",
                 list_overseas_link_info:{
+                    "link_content":"更多",
+                    "link_href":"https://www.hupu.com/"
+                },
+                local_companies_title:"本地公司名单",
+                list_local_company_link_info:{
                     "link_content":"更多",
                     "link_href":"https://www.hupu.com/"
                 },
@@ -107,7 +123,24 @@
                     "index":1,
                     "content":"驻南使领馆提醒在南中国公民和企业注意安全防范",
                     "update_time":"2018-04-26"
-                }]
+                }],
+                manufacture_list:{
+                    "general":[
+                        {
+                            "company_name":"XXX厂创",
+                            "url_address":"http://www.baidu.com",
+                            "icon_address":"https://ss2.bdstatic.com/kfoZeXSm1A5BphGlnYG/icon/95490.png"
+                        }
+                    ],
+                    "vip":[
+                        {
+                            "company_name":"XXX厂创",
+                            "url_address":"http://www.baidu.com",
+                            "vip_icon_address":"https://b3.hoopchina.com.cn/images/logo2017/v1/hp_logo_sports.png",
+                            "com_tel":"18818262629"
+                        }
+                    ]
+                }
             }
         },
         props: {
@@ -119,12 +152,13 @@
             }
         },
         created() {
+            this._getCountryInfo(),
             this._getProductIndustry(),
             this._getSecondHandResource(),
-            this._getNews()
+            this._getNews()            
         },
         methods: {
-            _getProductIndustry() {
+            _getCountryInfo() {
                 getCountryInfo().then((countryInfo) => {
                     this.country_info_content = countryInfo.country_info_content,
                     this.countryin_info_title = countryInfo.title
@@ -140,6 +174,11 @@
                 getNews().then((news)=>{
                     this.news_title = news.news_title,
                     this.news_arr = news.news_content
+                })
+            },
+            _getProductIndustry() {
+                getProducIndustry().then((productIndustry) => {
+                    this.manufacture_list = productIndustry.manufacture_list
                 })
             }
         },
