@@ -27,7 +27,6 @@
             <el-row>
                 <el-col :span="24">
                     <div class="grid-content">
-                        <el-divider></el-divider>
                         <productIndustry :data_list="manufacture_list" :comTitle="overseas_companies_title" :linkInfo="list_overseas_link_info"></productIndustry>
                     </div>
                 </el-col>
@@ -35,7 +34,6 @@
             <el-row>
                 <el-col :span="24">
                     <div class="grid-content">
-                        <el-divider></el-divider>
                         <productIndustry :data_list="manufacture_list" :comTitle="local_companies_title" :linkInfo="list_local_company_link_info"></productIndustry>
                     </div>
                 </el-col>
