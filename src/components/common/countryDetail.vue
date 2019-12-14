@@ -40,7 +40,7 @@
             </el-row>
             <el-row>
                 <el-col :span="18">
-                    <secondHandResource :comTitle="second_hand_resource_title" :secondHandResourceContent="second_hand_resource_content" :linkInfo="second_hand_resource_link_info"></secondHandResource>
+                    <secondHandResource v-if="second_hand_resource_content.length > 1" :comTitle="second_hand_resource_title" :secondHandResourceContent="second_hand_resource_content" :linkInfo="second_hand_resource_link_info"></secondHandResource>
                 </el-col>
                 <el-col :span="6">
                     <news :comTitle="news_title" :linkInfo="news_link_info" :newsArr="news_arr"></news>
