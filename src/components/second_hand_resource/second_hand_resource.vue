@@ -4,7 +4,7 @@
         <!-- 筛选 -->
         <el-row style="margin-bottom: 0;">
             <el-col :span="6">
-                <el-input type="search" v-model="search" @keyup.enter.native="searchSecondHandResource()" placeholder="请输入关键字">
+                <el-input type="search" v-model="search" placeholder="请输入关键字">
                     <i slot="prefix" class="el-input__icon el-icon-search"></i>
                 </el-input>
             </el-col>
@@ -85,11 +85,10 @@
                     "tel":13000000001
                 }],
                 show_start_index:0,
-                // content_num:0,
                 type_set:[
                 ],
                 search:"",
-                filter_table_data:[]
+                filter_obj:""
             }
         },
         created() {
@@ -98,26 +97,29 @@
         computed: {
             content_num: function () {
                 return this.filter_table_data.length
+            },
+            filter_table_data:{
+                get(){
+                    const filter_obj = this.filter_obj
+                    const filter_arr = []
+                    Object.values(filter_obj).map(x=>{filter_arr.push.apply(filter_arr,x)})
+                    const search = this.search
+                    if (search||filter_arr.length!=0) {
+                        const filter_table_content = this.secondHandResourceContent.filter(dataNews => {
+                             return filter_arr.length == 0 ? Object.keys(dataNews).some(key => {return String(dataNews[key]).toLowerCase().indexOf(search) > -1}):
+                             (Object.keys(dataNews).some(key => {return String(dataNews[key]).toLowerCase().indexOf(search) > -1})&filter_arr.indexOf(dataNews.type) > -1)
+                        })
+                        this.second_hand_resource_content_show = filter_table_content.slice(0,5)
+                        return filter_table_content
+                    }else{
+                        this.second_hand_resource_content_show = this.secondHandResourceContent.slice(0,5)
+                        return this.secondHandResourceContent
+                    }
+                },
+                set(v){
+                    this.second_hand_resource_content_show = v.slice(0,5)
+                }
             }
-            // filter_table_data:{
-            //     get(){
-            //         const search = this.search
-            //         if (search) {
-            //             var filter_table_content = this.secondHandResourceContent.filter(dataNews => {
-            //                  return Object.keys(dataNews).some(key => {
-            //                      return String(dataNews[key]).toLowerCase().indexOf(search) > -1})
-            //              })
-            //             this.second_hand_resource_content_show = filter_table_content.slice(0,5)
-            //             return filter_table_content
-            //         }else{
-            //             this.second_hand_resource_content_show = this.secondHandResourceContent.slice(0,5)
-            //             return this.secondHandResourceContent
-            //         }
-            //     },
-            //     set(v){
-            //         this.filter_table_data = v
-            //     }
-            // }
         },
         methods: {
             _init_data(){
@@ -134,20 +136,6 @@
                     })
                 }
             },
-            searchSecondHandResource(){
-                const search = this.search
-                if (search) {
-                    var filter_table_content = this.secondHandResourceContent.filter(dataNews => {
-                         return Object.keys(dataNews).some(key => {
-                             return String(dataNews[key]).toLowerCase().indexOf(search) > -1})
-                     })
-                    this.second_hand_resource_content_show = filter_table_content.slice(0,5)
-                    this.filter_table_data = filter_table_content
-                }else{
-                    this.second_hand_resource_content_show = this.secondHandResourceContent.slice(0,5)
-                    return this.filter_table_data = this.secondHandResourceContent
-                }
-            },
             highlight(val){
                 val = val + '';
                 if (val.indexOf(this.search) !== -1 && this.search !== '') {
@@ -157,16 +145,8 @@
                 }
             },
             typeFilterChange (filters) {
-                for (const key in filters) {
-                    if (filters[key].length > 0) {
-                        // 配合data中定义的数据枚举数组type，确定操作的是那一列
-                        this.filter_table_data = this.secondHandResourceContent.filter(x => {
-                            return filters[key].indexOf(x.type) != -1
-                        });
-                    }else{
-                        this.filter_table_data = this.secondHandResourceContent
-                    }
-                }
+                this.search = ''
+                this.filter_obj = filters
             },
             handleCurrentChange(val){
                 let start_index = (val-1)*5,
