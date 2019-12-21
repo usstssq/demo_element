@@ -26,7 +26,7 @@
                 :filter-method="filterType"
                 filter-placement="bottom-end">
                 <template slot-scope="scope">
-                    {{highlight(scope.row.type)}}
+                    <span v-html="highlight(scope.row.type)"></span>
                 </template>
             </el-table-column>
             <el-table-column
@@ -53,11 +53,12 @@
                 </template>
             </el-table-column>
         </el-table>
-        <div v-if="secondHandResourceContent.length > 5" class="block">
+        <div style="float: right" v-if="secondHandResourceContent.length > 5" class="block">
             <el-pagination
             layout="prev, pager, next"
             @current-change="handleCurrentChange"
             :page-size="5"
+            :current-page.sync="currentPageNum"
             :total="content_num">
             </el-pagination>
         </div>
@@ -88,7 +89,8 @@
                 type_set:[
                 ],
                 search:"",
-                filter_obj:""
+                filter_obj:"",
+                currentPageNum:1
             }
         },
         created() {
@@ -145,8 +147,9 @@
                 }
             },
             typeFilterChange (filters) {
-                this.search = ''
-                this.filter_obj = filters
+                this.search = '';
+                this.filter_obj = filters;
+                this.currentPageNum = 1;
             },
             handleCurrentChange(val){
                 let start_index = (val-1)*5,
