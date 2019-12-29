@@ -22,12 +22,11 @@ export function get(url){
         }
     }
 export function post(url){
-        return function(params = {}){
-            return axios.post(baseUrl + url, {
-                params
-            }).then((res) => {
-                const {errno, data} = res.data
-                if (errno === ERR_OK){
+        return function(params){
+            return axios.post(baseUrl + url, params
+            ).then((res) => {
+                const {header, data} = res.data
+                if (header.status === ERR_OK){
                     return data
                 }
             }).catch((e)=>{})

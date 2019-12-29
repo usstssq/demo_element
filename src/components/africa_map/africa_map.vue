@@ -187,7 +187,9 @@
             "type": "FeatureCollection",
             "features": []
         }
+        // var map_data = map_data_orgin.slice(2,53)
         for(var i = 0 ;i<map_data.length;i++){
+            // console.log(`map_data[i].countryId-4 :${map_data[i].countryId-4} \n`);
             var curr_item = {
                 "info":{
                     "have_orgin_flag":map_data[i].ifHaveAgentFlag,
@@ -200,7 +202,8 @@
                 },
                 "geometry":{
                     "type":map_data[i].mapShapeType,
-                    "coordinates":geometry_data[i]
+                    // "coordinates":geometry_data[map_data[i].countryId-4]
+                    "coordinates":geometry_data[map_data[i].countryId]
                 }
             }
             africa_map_data.features.push(curr_item)

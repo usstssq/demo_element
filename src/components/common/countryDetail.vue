@@ -59,7 +59,7 @@
     import africaMap from '~/components/africa_map/africa_map.vue'
     import news from '~/components/news/news.vue'
     import { Container, Main, Row, Col, } from 'element-ui'
-    import { getCountryInfo,getSenHadRes,getNews,getProducIndustry } from '~/api/index.js'
+    import { getProdList,getProdVipPanel,getCountryInfo,getSenHadRes,getNews,getProducIndustry } from '~/api/index.js'
     
     Vue.use(Container);
     Vue.use(Main);
@@ -153,13 +153,37 @@
             this._getCountryInfo(),
             this._getProductIndustry(),
             this._getSecondHandResource(),
-            this._getNews()            
+            this._getNews(),
+            this._getProdList(),
+            this._getProdVipPanel()
         },
         methods: {
+            _getProdList(){
+                var params = {
+                    "top_n":10
+                };
+                getProdList(params).then((prodlist)=>{
+                    this.manufacture_list.general = prodlist;
+                    // window.prodlist = prodlist;
+                    // console.log(prodlist);
+                })
+            },
+            _getProdVipPanel(){
+                var params = {
+                    "top_n":10
+                };
+                getProdVipPanel(params).then((prodlist)=>{
+                    this.manufacture_list.vip = prodlist;
+                    // window.prodlist = prodlist;
+                    // console.log(prodlist);
+                })                
+            },
             _getCountryInfo() {
                 getCountryInfo().then((countryInfo) => {
-                    this.country_info_content = countryInfo.country_info_content,
-                    this.countryin_info_title = countryInfo.title
+                    this.country_info_content = countryInfo.introInfo,
+                    this.countryin_info_title = countryInfo.nameCh
+                    // this.country_info_content = countryInfo.country_info_content,
+                    // this.countryin_info_title = countryInfo.title
                 })
             },
             _getSecondHandResource() {
@@ -176,7 +200,7 @@
             },
             _getProductIndustry() {
                 getProducIndustry().then((productIndustry) => {
-                    this.manufacture_list = productIndustry.manufacture_list
+                    // this.manufacture_list = productIndustry.manufacture_list
                 })
             }
         },
