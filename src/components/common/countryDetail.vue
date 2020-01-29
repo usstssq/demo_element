@@ -43,6 +43,11 @@
                     <secondHandResource v-if="second_hand_resource_content.length > 1" :comTitle="second_hand_resource_title" :secondHandResourceContent="second_hand_resource_content" :linkInfo="second_hand_resource_link_info"></secondHandResource>
                 </el-col>
                 <el-col :span="6">
+                    <recruInfo :comTitle="recruitment_title" :linkInfo="recruitment_info" :recruInfoArr="recru_info_arr"></recruInfo>
+                </el-col>
+            </el-row>
+            <el-row>
+                <el-col>
                     <news :comTitle="news_title" :linkInfo="news_link_info" :newsArr="news_arr"></news>
                 </el-col>
             </el-row>
@@ -56,11 +61,12 @@
     import productIndustry from '~/components/product_industry/product_industry.vue'
     import countryIntro from '~/components/country_intro/country_intro.vue'
     import companyIntro from '~/components/company_info/company_intro.vue'
+    import recruInfo from '~/components/recru_info/recru_info.vue'
     import secondHandResource from '~/components/second_hand_resource/second_hand_resource.vue'
     import africaMap from '~/components/africa_map/africa_map.vue'
     import news from '~/components/news/news.vue'
     import { Container, Main, Row, Col, } from 'element-ui'
-    import { getProdList,getProdVipPanel,getCountryInfo,getSenHadRes,getNews,getProducIndustry,getCompanyInfo,getEquipList } from '~/api/index.js'
+    import { getProdList,getProdVipPanel,getCountryInfo,getSenHadRes,getNews,getProducIndustry,getCompanyInfo,getEquipList,getrecruInfo } from '~/api/index.js'
     import { get,post } from '~/api/helpers.js'
     
     Vue.use(Container);
@@ -77,7 +83,8 @@
             secondHandResource,
             africaMap,
             news,
-            companyIntro
+            companyIntro,
+            recruInfo
         },
         data(){
             return {
@@ -117,6 +124,7 @@
                     "tel":13000000001
                 }],
                 news_title:"",
+                recruitment_title:"招聘信息",
                 news_link_info:{
                     "link_content":"更多",
                     "link_href":"https://www.hupu.com/"
@@ -125,6 +133,15 @@
                     "index":1,
                     "content":"驻南使领馆提醒在南中国公民和企业注意安全防范",
                     "update_time":"2018-04-26"
+                }],
+                recruitment_info:{
+                    "link_content":"更多",
+                    "link_href":"https://www.hupu.com/"                    
+                },
+                recru_info_arr:[{
+                    "id":1,
+                    "title":"招聘标题",
+                    "mDate":"20200201121314"
                 }],
                 manufacture_list:{
                     "general":[
@@ -175,7 +192,8 @@
             this._getProdList(),
             this._getProdVipPanel(),
             this._getEquipmentList(),
-            this._getCompanyInfo()
+            this._getCompanyInfo(),
+            this._getRecruInfo()
         },
         methods: {
             _getProdList(){
@@ -232,6 +250,12 @@
                 getNews(url).then((news)=>{
                     this.news_title = news.news_title,
                     this.news_arr = news.news_content
+                })
+            },
+            _getRecruInfo(){
+                let url = "api/main_content/1/recruitment_info"
+                getrecruInfo(url,{"token":window.localStorage.token}).then((recruInfo)=>{
+                    this.recru_info_arr = recruInfo
                 })
             },
             _getProductIndustry() {

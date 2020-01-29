@@ -36,7 +36,7 @@
 <style>
     .country_intro {
         margin: 40px 0 0 0;
-        width: 100%;
+        width: 97%;
         text-align: center;
         background-color: #F8F8F8;
     }

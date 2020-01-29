@@ -26,6 +26,7 @@ const getProdVipPanel = post()
 const getEquipList = post()
 const getCompanyDetail = post()
 const validateStatus = post()
+const getrecruInfo = post()
 
 export {
     getProducIndustry,
@@ -42,5 +43,6 @@ export {
     getProdVipPanel,
     getEquipList,
     getCompanyDetail,
-    validateStatus
+    validateStatus,
+    getrecruInfo
 }
