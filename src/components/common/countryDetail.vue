@@ -7,7 +7,7 @@
                     <countryIntro :title="countryin_info_title" :countryInfoContent="country_info_content"></countryIntro>
                 </el-col>
                 <el-col :span="8">
-                    <countryIntro :title="countryin_info_title" :countryInfoContent="country_info_content"></countryIntro>
+                    <companyIntro :companyName="company_name" :companyInfoContent="company_info_content"></companyIntro>
                 </el-col>
             </el-row>
             <el-row>
@@ -20,7 +20,7 @@
             <el-row>
                 <el-col :span="24">
                     <div class="grid-content">
-                        <productIndustry :data_list="manufacture_list" :comTitle="eng_equipment_title" :linkInfo="eng_equipment_link_info"></productIndustry>
+                        <productIndustry :data_list="equipment_list" :comTitle="eng_equipment_title" :linkInfo="eng_equipment_link_info"></productIndustry>
                     </div>
                 </el-col>
             </el-row>
@@ -55,11 +55,13 @@
     import vHeader from '~/components/common/header.vue'
     import productIndustry from '~/components/product_industry/product_industry.vue'
     import countryIntro from '~/components/country_intro/country_intro.vue'
+    import companyIntro from '~/components/company_info/company_intro.vue'
     import secondHandResource from '~/components/second_hand_resource/second_hand_resource.vue'
     import africaMap from '~/components/africa_map/africa_map.vue'
     import news from '~/components/news/news.vue'
     import { Container, Main, Row, Col, } from 'element-ui'
-    import { getProdList,getProdVipPanel,getCountryInfo,getSenHadRes,getNews,getProducIndustry } from '~/api/index.js'
+    import { getProdList,getProdVipPanel,getCountryInfo,getSenHadRes,getNews,getProducIndustry,getCompanyInfo,getEquipList } from '~/api/index.js'
+    import { get,post } from '~/api/helpers.js'
     
     Vue.use(Container);
     Vue.use(Main);
@@ -74,7 +76,8 @@
             countryIntro,
             secondHandResource,
             africaMap,
-            news
+            news,
+            companyIntro
         },
         data(){
             return {
@@ -99,6 +102,7 @@
                     "link_href":"https://www.hupu.com/"
                 },
                 countryin_info_title:"",
+                company_name:"百度",
                 country_info_content:"",
                 second_hand_resource_title:"",
                 second_hand_resource_link_info:{
@@ -138,6 +142,20 @@
                             "com_tel":"18818262629"
                         }
                     ]
+                },
+                equipment_list:{
+                    "general":[
+                        {
+                            "company_name":"XXX厂创",
+                            "url_address":"http://www.baidu.com",
+                            "icon_address":"https://ss2.bdstatic.com/kfoZeXSm1A5BphGlnYG/icon/95490.png"
+                        }
+                    ],
+                    "vip":[]
+                },
+                company_info_content:{
+                    content:"百度是一家好公司！",
+                    phone:"18818262629"
                 }
             }
         },
@@ -155,31 +173,47 @@
             this._getSecondHandResource(),
             this._getNews(),
             this._getProdList(),
-            this._getProdVipPanel()
+            this._getProdVipPanel(),
+            this._getEquipmentList(),
+            this._getCompanyInfo()
         },
         methods: {
             _getProdList(){
-                var params = {
+                let params = {
                     "top_n":10
-                };
-                getProdList(params).then((prodlist)=>{
+                },
+                url = "api/main_content/1/get_prod_list";
+                getProdList(url,params).then((prodlist)=>{
                     this.manufacture_list.general = prodlist;
                     // window.prodlist = prodlist;
                     // console.log(prodlist);
                 })
             },
             _getProdVipPanel(){
-                var params = {
+                let params = {
                     "top_n":10
-                };
-                getProdVipPanel(params).then((prodlist)=>{
+                },
+                url = "api/main_content/1/get_prod_vip_panel";
+                getProdVipPanel(url,params).then((prodlist)=>{
                     this.manufacture_list.vip = prodlist;
                     // window.prodlist = prodlist;
                     // console.log(prodlist);
                 })                
             },
+            _getEquipmentList(){
+                let params = {
+                    "top_n":10
+                },
+                url = "trade/main_content/1/get_equip_list"
+                getEquipList(url,params).then((equiplist)=>{
+                    // this.equipment_list.vip = equiplist;
+                    // 工程设备机械目前后台没有vip的接口，前端先不显示vip接口
+                    this.equipment_list.general = equiplist;
+                })
+            },
             _getCountryInfo() {
-                getCountryInfo().then((countryInfo) => {
+                let url = "api/main_content/1/get_country_info"
+                getCountryInfo(url).then((countryInfo) => {
                     this.country_info_content = countryInfo.introInfo,
                     this.countryin_info_title = countryInfo.nameCh
                     // this.country_info_content = countryInfo.country_info_content,
@@ -187,20 +221,31 @@
                 })
             },
             _getSecondHandResource() {
-                getSenHadRes().then((secondHadResourceInfo) => {
+                let url = "api/second_hand_resource"
+                getSenHadRes(url).then((secondHadResourceInfo) => {
                     this.second_hand_resource_title = secondHadResourceInfo.title,
                     this.second_hand_resource_content = secondHadResourceInfo.second_hand_resource_content
                 })
             },
             _getNews(){
-                getNews().then((news)=>{
+                let url = "api/news"
+                getNews(url).then((news)=>{
                     this.news_title = news.news_title,
                     this.news_arr = news.news_content
                 })
             },
             _getProductIndustry() {
-                getProducIndustry().then((productIndustry) => {
+                let url = "api/product_industry"
+                getProducIndustry(url).then((productIndustry) => {
                     // this.manufacture_list = productIndustry.manufacture_list
+                })
+            },
+            _getCompanyInfo(){
+                let url = "api/company_info"
+                getCompanyInfo(url).then((company_info)=>{
+                    console.log(JSON.stringify(company_info))
+                    this.company_name = company_info.company_name,
+                    this.company_info_content = company_info.company_info_content
                 })
             }
         },

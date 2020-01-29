@@ -3,6 +3,8 @@ import Router from 'vue-router'
 
 import countryDetail from "~/components/common/countryDetail.vue"
 import homePage from "~/components/common/homePage.vue"
+import companyDetail from "~/components/company_detail/company_detail.vue"
+import uploadData from "~/components/upload_data/upload_data.vue"
 
 Vue.use(Router);
 
@@ -15,13 +17,20 @@ const routes = [
         name: '首页',
         component: homePage
     },{
+        path: '/uploadData',
+        component: uploadData
+    },{
+        path:'/companyDetail/:companyid',
+        component: companyDetail
+    },{
         path:'/',
         redirect:'/homePage'
     }
-    ]
+]
 
 const router = window.$router = new Router({
-    routes
+    mode:'history',
+    routes:routes
 });
 
 export default router;

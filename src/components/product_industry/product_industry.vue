@@ -4,8 +4,8 @@
         <div class="product_industry_content">
             <el-row>
                 <el-col v-for="(factory,index) in data_list.general" :span="4">
-                    <el-link class="imgscale-top" :underline="false" :href="factory.l_rank" target="_blank" type="primary">
-                        <img :src="factory.l_rank" width="16" height="16" class="nav-icon"></img>
+                    <el-link class="imgscale-top" :underline="false" :href="'/companyDetail/'+factory.l_rank" target="_blank" type="primary">
+                        <img :src="'/'+factory.l_rank" width="16" height="16" class="nav-icon"></img>
                         {{factory.name}}
                     </el-link>
                 </el-col>
@@ -162,8 +162,8 @@
         display:block;
         text-decoration:none;
         color:#409EFF;
-        padding-left:50%;
-        width:50%;
+        padding-left:40%;
+        width:60%;
         height:100%;
         font-size:8px;
     }
@@ -174,7 +174,9 @@
         background-color:#FFFFFF;
     }
     .img_box {
-        width: 40%;
+        /*width: 40%;*/
+        width:32px;
+        height:32px;
         position: absolute;
         left: 0;
         top: 0;

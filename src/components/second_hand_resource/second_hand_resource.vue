@@ -198,7 +198,7 @@
         float:right;
     }
     .second_had_resource{
-        width:95%;
+        width:97%;
     }
     a:hover{
         background : #eee

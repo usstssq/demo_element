@@ -9,8 +9,8 @@ const baseUrl = urlMap[process.env.NODE_ENV]
 // const baseUrl = '/apis/'
 const ERR_OK = 0
 
-export function get(url){
-        return function(params = {}){
+export function get(){
+        return function(url,params = {}){
             return axios.get(baseUrl + url, {
                 params
             }).then((res) => {
@@ -21,8 +21,8 @@ export function get(url){
             }).catch((e)=>{})
         }
     }
-export function post(url){
-        return function(params){
+export function post(){
+        return function(url,params){
             return axios.post(baseUrl + url, params
             ).then((res) => {
                 const {header, data} = res.data

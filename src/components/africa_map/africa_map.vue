@@ -208,7 +208,7 @@
             }
             africa_map_data.features.push(curr_item)
         }
-        console.log(africa_map_data)
+        // console.log(africa_map_data)
         return africa_map_data
     }
     export default {
@@ -218,7 +218,8 @@
         },
         methods: {
             _getAfricaMapData() {
-                getAfricaMap().then((map_data) => {
+                let url = "trade/get_map"
+                getAfricaMap(url).then((map_data) => {
                     var map_full_data = construct_map_data(map_data,geometry_data)
                     update(map_full_data)
                 })

@@ -8,3 +8,20 @@ npm run dev
 
 3、生产环境打包运行
 npm run build
+
+@keyup.enter.native="searchSecondHandResource()"
+
+token 放在 header 里面
+
+cp -r /Users/sushuqing/jetbrains-agent.jar /Applications/'IntelliJ IDEA.app'/Contents/bin/
+
+-javaagent:/Applications/'IntelliJ IDEA.app'/Contents/bin/jetbrains-agent.jar
+
+-javaagent:/Users/sushuqing/jetbrains-agent.jar
+
+
+备忘录：
+1、“工程设备机械” 列表点击里面的超链接，跳转到一个单独的页面；超链接的地址由前端生成，并路由过去；
+2、
+
+

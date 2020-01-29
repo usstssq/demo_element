@@ -53,9 +53,10 @@
         },
         methods: {
             _getCompanyInfo() {
-                getCompanyInfo().then((countryInfo) => {
-                    this.company_info_title = countryInfo.title,
-                    this.company_info_content = countryInfo.content
+                let url = "api/company_info"
+                getCompanyInfo(url).then((countryInfo) => {
+                    this.company_info_title = countryInfo.company_name,
+                    this.company_info_content = countryInfo.company_info_content.content
                 })
             }
         },

@@ -82,14 +82,14 @@ module.exports = (options = {}) => ({
           // '^/trade': '/trade'
           '^/trade': '/shs'
         }
+      },
+      '/api/': {
+        target: 'http://localhost:3000/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': '/api'
+        }
       }
-      // '/api/': {
-      //   target: 'http://127.0.0.1:8080',
-      //   changeOrigin: true,
-      //   pathRewrite: {
-      //     '^/api': ''
-      //   }
-      // }
     },
     historyApiFallback: {
       index: url.parse(options.dev ? '/assets/' : publicPath).pathname

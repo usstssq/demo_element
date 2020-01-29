@@ -1,9 +1,10 @@
 <template>
     <div>
-        <span @click="centerDialogVisible = true">
+        <span v-if = "!loginUserNameVisible" @click="centerDialogVisible = true">
             <!-- <i class="el-icon-user-solid"></i> -->
             登录
         </span>
+        <span v-if="loginUserNameVisible">{{ruleForm.name}}</span>
         <el-dialog
             title="登录"
             :visible.sync="centerDialogVisible"
@@ -32,8 +33,9 @@
 <script>
     import Vue from 'vue';
     import { Dialog } from 'element-ui';
-    import { login } from '~/api/index.js'
+    import { login } from '~/api/index.js';
     import 'element-ui/lib/theme-chalk/index.css';
+    import { validateStatus } from '~/api/index.js'
     let storage=window.localStorage;
     Vue.use(Dialog);
 
@@ -52,6 +54,8 @@
             };
             return {
                 centerDialogVisible: false,
+                loginUserNameVisible: false,
+                loginBtnVisible: true,
                 ruleForm: {
                     name: '',
                     pass: ''
@@ -63,15 +67,40 @@
                 }
             };
         },
+        created() {
+            this._validateStatus()
+        },
         methods: {
+            _validateStatus(){
+                if(storage.token){
+                    let url = "api/validateStatus",
+                        param = {
+                            "token":storage.token
+                        }
+                    validateStatus(url,param).then((result)=>{
+                        if(result.status==0){
+                            this.ruleForm.name = storage.username;
+                            this.centerDialogVisible = false;
+                            this.loginUserNameVisible = true;
+                        }
+                    })
+                }
+            },
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        login({username:this.ruleForm.name,pwd:this.ruleForm.pass}).then((loginInfo)=>{
-                            if(loginInfo.success==1){
-                                storage["username"]=loginInfo.userInfo.username;
-                                storage["token"]=loginInfo.userInfo.token;
-                            }
+                        let url = "api/login",
+                            user_name = this.ruleForm.name,
+                            pwd = this.ruleForm.pass,
+                            param = {
+                                username: user_name,
+                                pwd: pwd
+                            };
+                        login(url,param).then((loginInfo)=>{
+                            storage["token"] = loginInfo.token;
+                            storage["username"] = user_name;
+                            this.centerDialogVisible = false;
+                            this.loginUserNameVisible = true;
                         })
                         // alert('submit!');
                     } else {
