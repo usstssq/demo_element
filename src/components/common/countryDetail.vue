@@ -136,7 +136,7 @@
                 }],
                 recruitment_info:{
                     "link_content":"更多",
-                    "link_href":"https://www.hupu.com/"                    
+                    "link_href":"/recruitment_info/more"                    
                 },
                 recru_info_arr:[{
                     "id":1,
@@ -253,7 +253,8 @@
                 })
             },
             _getRecruInfo(){
-                let url = "api/main_content/1/recruitment_info"
+                let url = "api/main_content/1/recruitment_info";
+                this.recruitment_info.link_href = "/recruitment_info/more/1"
                 getrecruInfo(url,{"token":window.localStorage.token}).then((recruInfo)=>{
                     this.recru_info_arr = recruInfo
                 })
@@ -278,6 +279,12 @@
 </script>
 
 <style>
+    body {
+        /*font-family: "Helvetica Neue", Helvetica, sans-serif;*/
+        font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+        font-size: 14px;
+        color: #333;
+    }
     #htmlBody{
         min-width:576px;
         margin:0 80px;
