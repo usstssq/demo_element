@@ -1,14 +1,14 @@
 <template>
     <div class="second_had_resource">
-        <comTitle :title="comTitle"></comTitle>
-        <!-- 筛选 -->
-        <el-row style="margin-bottom: 0;">
-            <el-col :span="6">
-                <el-input type="search" v-model="search" placeholder="请输入关键字">
+        <div id="title">
+            <h3> {{comTitle}} </h3>
+            <!-- 筛选 -->
+            <div class="search">
+                <el-input type="search" v-model="search" placeholder="请输入关键字" size="mini">
                     <i slot="prefix" class="el-input__icon el-icon-search"></i>
                 </el-input>
-            </el-col>
-        </el-row>
+            </div>
+        </div>
         <el-table :data="second_hand_resource_content_show" @filter-change="typeFilterChange" stripe border fit style="width: 100%">
             <el-table-column
                 prop="index"
@@ -67,15 +67,11 @@
 <script>
     import Vue from 'vue';
     import { Divider } from 'element-ui';
-    import comTitle from '~/components/common/comTitle.vue'
     import 'element-ui/lib/theme-chalk/index.css';
 
     Vue.use(Divider);
     export default {
         name: 'second_had_resource',
-        components: {
-            comTitle
-        },
         data(){
             return {
                 second_hand_resource_content_show:[{
@@ -194,6 +190,20 @@
 </script>
 
 <style>
+    #title{
+        position: relative;
+        background-color:#F8F8F8;
+        padding:15px 0;
+    }
+    #title h3{
+        margin:0 0;
+        padding-left:5px;
+        display:inline-block;
+    }
+    #title .search{
+        float:right;
+        margin-right:20px;
+    }
     .search_div{
         float:right;
     }
