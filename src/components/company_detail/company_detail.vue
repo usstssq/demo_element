@@ -9,7 +9,81 @@
             </el-row>
             <el-row>
                 <el-col>
-                    {{company_info}}
+                    <h3 style="text-align: left">企业简介</h3>
+                    {{company_info.intrdct}}
+                </el-col>
+            </el-row>
+            <el-row>
+                <el-col>
+                    <h3 style="text-align: left">相关信息</h3>
+                </el-col>
+            </el-row>
+            <div class="company_info">
+                <el-row>
+                    <el-col :span="2">
+                        公司名称
+                    </el-col>
+                    <el-col :span="6">
+                        {{company_info.name}}
+                    </el-col>
+                    <el-col :span="2">
+                        创始人
+                    </el-col>
+                    <el-col :span="6">
+                        {{company_info.create_person}}
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="2">
+                        所属行业
+                    </el-col>
+                    <el-col :span="6">
+                        {{company_info.belong_industry}}
+                    </el-col>
+                    <el-col :span="2">
+                        经营范围
+                    </el-col>
+                    <el-col :span="6">
+                        {{company_info.business_scope}}
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="2">
+                        联系方式
+                    </el-col>
+                    <el-col :span="6">
+                        {{company_info.contact_information}}
+                    </el-col>
+                    <el-col :span="2">
+                        经营范围
+                    </el-col>
+                    <el-col :span="6">
+                        {{company_info.business_scope}}
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="2">
+                        总部地址
+                    </el-col>
+                    <el-col :span="6">
+                        {{company_info.address}}
+                    </el-col>
+                    <el-col :span="2">
+                        资质认证
+                    </el-col>
+                    <el-col :span="6">
+                        {{company_info.qualification_certification}}
+                    </el-col>
+                </el-row>
+            </div>
+            <el-row>
+                <el-col>
+                    <h3 style="text-align: left">主营业务</h3>
+                </el-col>
+            </el-row>
+            <el-row>
+                <el-col>
+                    {{company_info.main_business_introduction}}
                 </el-col>
             </el-row>
         </div>
@@ -32,7 +106,7 @@
         },
         data(){
             return {
-                company_info:"",
+                company_info:Object,
                 company_name:""
             }
         },
@@ -59,6 +133,9 @@
     #htmlBody{
         min-width:576px;
         margin:0 80px;
+    }
+    .company_info .el-row{
+        margin-bottom: 10px;
     }
 </style>
 
