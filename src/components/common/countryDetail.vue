@@ -40,7 +40,7 @@
             </el-row>
             <el-row>
                 <el-col :span="18">
-                    <secondHandResource v-if="second_hand_resource_content.length > 1" :comTitle="second_hand_resource_title" :secondHandResourceContent="second_hand_resource_content" :linkInfo="second_hand_resource_link_info"></secondHandResource>
+                    <secondHandResource v-if="second_hand_resource_content.length > 1" :comTitle="second_hand_resource_title" :secondHandItemList="second_hand_item_list"></secondHandResource>
                 </el-col>
                 <el-col :span="6">
                     <recruInfo :comTitle="recruitment_title" :linkInfo="recruitment_info" :recruInfoArr="recru_info_arr"></recruInfo>
@@ -88,6 +88,37 @@
         },
         data(){
             return {
+                second_hand_item_list:[{
+                    "id":1,
+                    "title":"求购 打包机 1台",
+                    "desc":"求购打包机一台，希望8成新，可上门自提。期望价格9元。",
+                    "tel":"18818262629",
+                    "imageUrl":"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2570243317.jpg"
+                },{
+                    "id":2,
+                    "title":"求购 打包机 2台",
+                    "desc":"求购打包机一台，希望8成新，可上门自提。期望价格9元。",
+                    "tel":"18818262629",
+                    "imageUrl":"https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2578045524.jpg"
+                },{
+                    "id":3,
+                    "title":"求购 打包机 3台",
+                    "desc":"求购打包机一台，希望8成新，可上门自提。期望价格9元。",
+                    "tel":"18818262629",
+                    "imageUrl":"https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2577437186.jpg"
+                },{
+                    "id":4,
+                    "title":"求购 打包机 4台",
+                    "desc":"求购打包机一台，希望8成新，可上门自提。期望价格9元。",
+                    "tel":"18818262629",
+                    "imageUrl":"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2570099577.jpg"
+                },{
+                    "id":5,
+                    "title":"求购 打包机 5台",
+                    "desc":"求购打包机一台，希望8成新，可上门自提。期望价格9元。",
+                    "tel":"18818262629",
+                    "imageUrl":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568258113.jpg"
+                }],
                 product_industry_title:"生产制造业",
                 product_link_info:{
                     "link_content":"更多",
