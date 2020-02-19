@@ -8,10 +8,29 @@
                     <i slot="prefix" class="el-input__icon el-icon-search"></i>
                 </el-input>
             </div>
+            <el-dropdown :hide-on-click="false" class = "second_type_select">
+                <span class="el-dropdown-link">
+                请选择二手信息类型<i class="el-icon-arrow-down el-icon--right"></i>
+                </span>
+                <el-dropdown-menu slot="dropdown">
+                    <el-checkbox-group v-model = "checkboxVal">
+                        <el-dropdown-item v-for = "item in typeSet">
+                            <el-checkbox :label="item">{{item}}</el-checkbox>
+                        </el-dropdown-item>
+                        </el-checkbox-group>
+                </el-dropdown-menu>
+            </el-dropdown>
         </div>
-        <div v-for="second_hand_item in secondHandItemList">
+        <div v-for="second_hand_item in current_table_content">
             <secondHandItem :secondHandItem="second_hand_item"></secondHandItem>
         </div>
+        <el-pagination
+            background
+            layout="prev, pager, next"
+            :total="content_num"
+            :page-size="5"
+            @current-change="change_page">
+        </el-pagination>
     </div>
 </template>
 <script>
@@ -28,8 +47,17 @@
         },
         data(){
             return {
+                checkboxVal:[],
+                typeSet:[],
                 search:"",
-                second_hand_resource_content_show:[{
+                // secondHandItemListNow:[{
+                //     "index":1,
+                //     "type":"求购",
+                //     "content":"包装厂处理半自动打钉机1台，17年的设备，广东产，进价28.6万",
+                //     "num":1,
+                //     "tel":13000000001
+                // }],
+                current_table_content:[{
                     "index":1,
                     "type":"求购",
                     "content":"包装厂处理半自动打钉机1台，17年的设备，广东产，进价28.6万",
@@ -43,17 +71,65 @@
         },
         computed: {
             content_num: function () {
-                return this.filter_table_data.length
+                // return this.filter_table_data.length
+                return this.secondHandItemListNow.length
             },
-            filter_table_data:{
+            secondHandItemListNow:{
                 get(){
+                    const search = this.search
+                    if (search||this.checkboxVal.length!=0) {
+                        const filter_table_content = this.secondHandItemList.filter(dataNews => {
+                            console.log(`dataNews:${JSON.stringify(dataNews)}`)
+                            console.log(`Object.keys(dataNews):${JSON.stringify(Object.keys(dataNews))}`)
+                             return this.checkboxVal.length == 0 ? Object.keys(dataNews).some(key => {return String(dataNews[key]).toLowerCase().indexOf(search) > -1}):
+                             (Object.keys(dataNews).some(key => {return String(dataNews[key]).toLowerCase().indexOf(search) > -1})&this.checkboxVal.indexOf(dataNews.type) > -1)
+                        })
+                        this.current_table_content = filter_table_content.slice(0,5)
+                        return filter_table_content
+                    }else{
+                        this.current_table_content = this.secondHandItemList.slice(0,5)
+                        return this.secondHandItemList
+                    }
                 },
                 set(v){
+                    this.current_table_content = v.slice(0,5)
                 }
+            }
+        },
+        watch:{
+            checkboxVal(valArr) {
+                this.secondHandItemListNow = this.secondHandItemList.filter(x=>{
+                    return valArr.indexOf(x.type) > -1
+                })
+                console.log(`11111${JSON.stringify(valArr)}`);
             }
         },
         methods: {
             _init_data(){
+                this.secondHandItemListNow = this.secondHandItemList.slice(0,this.secondHandItemList.length)
+                this.current_table_content = this.secondHandItemListNow.slice(0,5)
+                let type_set = new Set();
+                this.secondHandItemList.map(x=>{
+                    // console.log(`22222${JSON.stringify(x)}`)
+                    type_set.add(x.type);
+                });
+                // console.log(`11111111${JSON.stringify(type_set)}`)
+                this.typeSet = [...type_set]
+            },
+            prev_page(val){
+                let start_index = (val-1)*5,
+                    end_index = val*5;
+                this.current_table_content = this.secondHandItemListNow.slice(start_index,end_index);
+            },
+            next_page(val){
+                let start_index = (val-1)*5,
+                    end_index = val*5;
+                this.current_table_content = this.secondHandItemListNow.slice(start_index,end_index);
+            },
+            change_page(val){
+                let start_index = (val-1)*5,
+                    end_index = val*5;
+                this.current_table_content = this.secondHandItemListNow.slice(start_index,end_index);
             }
         },
         props: {
@@ -94,11 +170,18 @@
         float:right;
         margin-right:20px;
     }
+    #title .second_type_select{
+        float: right;
+        margin-right:20px;
+    }
     .search_div{
         float:right;
-    }
+    }    
     .second_had_resource{
         width:97%;
+    }
+    .second_had_resource .el-pagination{
+        float: right;
     }
     a:hover{
         background : #eee

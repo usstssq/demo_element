@@ -40,9 +40,9 @@
             return {
                 cImageInfo: {
                     "cImageList":[
-                        "https://public.danke.com.cn/public-20191218-Fks0wLNvPDKLxMitPZxgd06D7oZ1-roomPcDetail.jpg",
-                        "https://public.danke.com.cn/public-20191218-FogCiaMudIKl2oUMNISaowOguQH3-roomPcDetail.jpg",
-                        "https://public.danke.com.cn/public-20191218-Fu4R1oT7x3_FhKPrHd5F2HlB1sbr-roomPcDetail.jpg"
+                        "https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2570243317.jpg",
+                        "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2578045524.jpg",
+                        "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2577437186.jpg"
                     ],
                     "id":1,
                     "title":"求购 打包机 1台",
@@ -58,9 +58,9 @@
                 this.dialogVisible = true;
                 this.cImageInfo = {
                     "cImageList":[
-                        "https://img3.doubanio.com/view/movie_gallery_frame_hot_rec/normal/public/b196b192e2874ee.jpg",
-                        "https://img3.doubanio.com/view/movie_gallery_frame_hot_rec/normal/public/93737b68b1d6571.jpg",
-                        "https://img9.doubanio.com/view/movie_gallery_frame_hot_rec/normal/public/73a766d943aabb5.jpg"
+                        "https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2570243317.jpg",
+                        "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2578045524.jpg",
+                        "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2577437186.jpg"
                     ],
                     "id":1,
                     "title":"求购 打包机 1台",

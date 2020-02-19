@@ -90,32 +90,79 @@
             return {
                 second_hand_item_list:[{
                     "id":1,
+                    "type":"求购",
                     "title":"求购 打包机 1台",
                     "desc":"求购打包机一台，希望8成新，可上门自提。期望价格9元。",
                     "tel":"18818262629",
                     "imageUrl":"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2570243317.jpg"
                 },{
                     "id":2,
+                    "type":"求购",
                     "title":"求购 打包机 2台",
                     "desc":"求购打包机一台，希望8成新，可上门自提。期望价格9元。",
                     "tel":"18818262629",
                     "imageUrl":"https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2578045524.jpg"
                 },{
                     "id":3,
+                    "type":"求购",
                     "title":"求购 打包机 3台",
                     "desc":"求购打包机一台，希望8成新，可上门自提。期望价格9元。",
                     "tel":"18818262629",
                     "imageUrl":"https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2577437186.jpg"
                 },{
                     "id":4,
+                    "type":"求购",
                     "title":"求购 打包机 4台",
                     "desc":"求购打包机一台，希望8成新，可上门自提。期望价格9元。",
                     "tel":"18818262629",
                     "imageUrl":"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2570099577.jpg"
                 },{
                     "id":5,
+                    "type":"求购",
                     "title":"求购 打包机 5台",
                     "desc":"求购打包机一台，希望8成新，可上门自提。期望价格9元。",
+                    "tel":"18818262629",
+                    "imageUrl":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568258113.jpg"
+                },{
+                    "id":6,
+                    "type":"租赁",
+                    "title":"租赁 打包机 5台",
+                    "desc":"租赁打包机一台，希望8成新，可上门自提。期望价格9元。",
+                    "tel":"18818262629",
+                    "imageUrl":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568258113.jpg"
+                },{
+                    "id":7,
+                    "type":"租赁",
+                    "title":"租赁 打包机 5台",
+                    "desc":"租赁打包机一台，希望8成新，可上门自提。期望价格9元。",
+                    "tel":"18818262629",
+                    "imageUrl":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568258113.jpg"
+                },{
+                    "id":8,
+                    "type":"租赁",
+                    "title":"租赁 压瓦机 5台",
+                    "desc":"租赁压瓦机一台，希望8成新，可上门自提。期望价格9元。",
+                    "tel":"18818262629",
+                    "imageUrl":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568258113.jpg"
+                },{
+                    "id":9,
+                    "type":"租赁",
+                    "title":"租赁 压瓦机 5台",
+                    "desc":"租赁压瓦机一台，希望8成新，可上门自提。期望价格9元。",
+                    "tel":"18818262629",
+                    "imageUrl":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568258113.jpg"
+                },{
+                    "id":10,
+                    "type":"出售",
+                    "title":"出售 压瓦机 5台",
+                    "desc":"出售压瓦机一台，希望8成新，可上门自提。期望价格9元。",
+                    "tel":"18818262629",
+                    "imageUrl":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568258113.jpg"
+                },{
+                    "id":11,
+                    "type":"出售",
+                    "title":"出售 压瓦机 5台",
+                    "desc":"出售压瓦机一台，希望8成新，可上门自提。期望价格9元。",
                     "tel":"18818262629",
                     "imageUrl":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568258113.jpg"
                 }],
