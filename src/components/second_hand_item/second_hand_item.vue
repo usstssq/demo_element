@@ -1,12 +1,11 @@
 <template>
     <div class="second_hand_item">
         <a href="javascript:void(0)" class="second_hand_img">
-            <img :src="secondHandItem.imageUrl" @click="openSecondHandDLG(secondHandItem)" width="130" height="72" alt="图片">
+            <img :src="imageUrlL" @click="openSecondHandDLG(secondHandItem)" width="130" height="72" alt="图片">
         </a>
         <div class="second_hand_desc">
-            <a href="#">{{secondHandItem.title}}</a>
-            <div>{{secondHandItem.desc}}</div>
-            <div>{{secondHandItem.tel}}</div>
+            <a href="#">{{secondHandItem.name}}</a>
+            <div>数量: {{secondHandItem.count}}  Tel: {{secondHandItem.contactorPhone}}</div>
         </div>
         <el-dialog
             :visible.sync="dialogVisible"
@@ -15,13 +14,13 @@
                 <div class="dialog-image-block">
                     <el-carousel>
                         <el-carousel-item v-for="item in cImageInfo.cImageList" :key="item">
-                            <img :src="item">
+                            <img :src="item" type="image/jpeg" >
                         </el-carousel-item>
                     </el-carousel>
                 </div>
                 <div class="second_hand_desc dialog-image-desc">
                     <a href="#">{{cImageInfo.title}}</a>
-                    <div>{{cImageInfo.desc}}</div>
+                    <div>{{cImageInfo.content}}</div>
                     <div>{{cImageInfo.tel}}</div>
                 </div>
             </div>
@@ -32,6 +31,7 @@
     import Vue from 'vue';
     import { Divider } from 'element-ui';
     import 'element-ui/lib/theme-chalk/index.css';
+    import { getExchangeEquipImg } from '~/api/index.js'
 
     Vue.use(Divider);
     export default {
@@ -50,8 +50,12 @@
                     "tel":"18818262629",
                     "imageUrl":"https://ss2.bdstatic.com/kfoZeXSm1A5BphGlnYG/icon/95490.png"
                 },
-                dialogVisible:false
+                dialogVisible:false,
+                imageUrlL:""
             }
+        },
+        mounted(){
+            this._getExchangeEquip()
         },
         methods: {
             openSecondHandDLG(xx){
@@ -68,6 +72,16 @@
                     "tel":"18818262629",
                     "imageUrl":"https://ss2.bdstatic.com/kfoZeXSm1A5BphGlnYG/icon/95490.png"
                 }
+            },
+            _getExchangeEquip() {
+                let url = "trade/main_content/common/get_img/exchange_equip"
+                getExchangeEquipImg(url,{
+                    "token":"11111",
+                    "id":1,
+                    "countryId":1
+                }).then((exchangeEquipImg) => {
+                    this.imageUrlL = exchangeEquipImg
+                })
             }
         },
         props: {

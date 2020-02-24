@@ -21,6 +21,7 @@ export function get(){
             }).catch((e)=>{})
         }
     }
+
 export function post(){
         return function(url,params){
             return axios.post(baseUrl + url, params
@@ -29,6 +30,16 @@ export function post(){
                 if (header.status === ERR_OK){
                     return data
                 }
+            }).catch((e)=>{})
+        }
+    }
+
+export function postImg(){
+        return function(url,params){
+            return axios.post(baseUrl + url, params,{responseType: 'arraybuffer'}
+            ).then(res => {
+                let imgUrl = 'data:image/jpeg;base64,' + new Buffer(res.data, 'binary').toString('base64');
+                return imgUrl
             }).catch((e)=>{})
         }
     }

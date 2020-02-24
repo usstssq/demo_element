@@ -40,7 +40,7 @@
             </el-row>
             <el-row>
                 <el-col :span="18">
-                    <secondHandResource v-if="second_hand_resource_content.length > 1" :comTitle="second_hand_resource_title" :secondHandItemList="second_hand_item_list"></secondHandResource>
+                    <secondHandResource v-if="second_hand_item_list.length > 1" :secondHandItemList="second_hand_item_list" comTitle="二手资源交易信息"></secondHandResource>
                 </el-col>
                 <el-col :span="6">
                     <recruInfo :comTitle="recruitment_title" :linkInfo="recruitment_info" :recruInfoArr="recru_info_arr"></recruInfo>
@@ -66,7 +66,7 @@
     import africaMap from '~/components/africa_map/africa_map.vue'
     import news from '~/components/news/news.vue'
     import { Container, Main, Row, Col, } from 'element-ui'
-    import { getProdList,getProdVipPanel,getCountryInfo,getSenHadRes,getNews,getProducIndustry,getCompanyInfo,getEquipList,getrecruInfo } from '~/api/index.js'
+    import { getProdList,getExchangeEquip,getProdVipPanel,getCountryInfo,getNews,getProducIndustry,getCompanyInfo,getEquipList,getrecruInfo } from '~/api/index.js'
     import { get,post } from '~/api/helpers.js'
     
     Vue.use(Container);
@@ -189,18 +189,10 @@
                 countryin_info_title:"",
                 company_name:"百度",
                 country_info_content:"",
-                second_hand_resource_title:"",
                 second_hand_resource_link_info:{
                     "link_content":"更多",
                     "link_href":"https://www.hupu.com/"                    
                 },
-                second_hand_resource_content:[{
-                    "index":1,
-                    "type":"求购",
-                    "content":"包装厂处理半自动打钉机1台，17年的设备，广东产，进价28.6万",
-                    "num":1,
-                    "tel":13000000001
-                }],
                 news_title:"",
                 recruitment_title:"招聘信息",
                 news_link_info:{
@@ -265,7 +257,7 @@
         created() {
             this._getCountryInfo(),
             this._getProductIndustry(),
-            this._getSecondHandResource(),
+            this._getExchangeEquip(),
             this._getNews(),
             this._getProdList(),
             this._getProdVipPanel(),
@@ -316,11 +308,10 @@
                     // this.countryin_info_title = countryInfo.title
                 })
             },
-            _getSecondHandResource() {
-                let url = "api/second_hand_resource"
-                getSenHadRes(url).then((secondHadResourceInfo) => {
-                    this.second_hand_resource_title = secondHadResourceInfo.title,
-                    this.second_hand_resource_content = secondHadResourceInfo.second_hand_resource_content
+            _getExchangeEquip() {
+                let url = "trade/main_content/1/get_exchange_equip_full_info"
+                getExchangeEquip(url,{"top_n":500}).then((exchangeEquipInfo) => {
+                    this.second_hand_item_list = exchangeEquipInfo
                 })
             },
             _getNews(){

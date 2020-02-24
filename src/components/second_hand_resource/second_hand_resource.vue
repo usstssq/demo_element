@@ -79,10 +79,8 @@
                     const search = this.search
                     if (search||this.checkboxVal.length!=0) {
                         const filter_table_content = this.secondHandItemList.filter(dataNews => {
-                            console.log(`dataNews:${JSON.stringify(dataNews)}`)
-                            console.log(`Object.keys(dataNews):${JSON.stringify(Object.keys(dataNews))}`)
                              return this.checkboxVal.length == 0 ? Object.keys(dataNews).some(key => {return String(dataNews[key]).toLowerCase().indexOf(search) > -1}):
-                             (Object.keys(dataNews).some(key => {return String(dataNews[key]).toLowerCase().indexOf(search) > -1})&this.checkboxVal.indexOf(dataNews.type) > -1)
+                             (Object.keys(dataNews).some(key => {return String(dataNews[key]).toLowerCase().indexOf(search) > -1})&this.checkboxVal.indexOf(dataNews.exchangeType) > -1)
                         })
                         this.current_table_content = filter_table_content.slice(0,5)
                         return filter_table_content
@@ -99,9 +97,17 @@
         watch:{
             checkboxVal(valArr) {
                 this.secondHandItemListNow = this.secondHandItemList.filter(x=>{
-                    return valArr.indexOf(x.type) > -1
+                    return valArr.indexOf(x.exchangeType) > -1
                 })
-                console.log(`11111${JSON.stringify(valArr)}`);
+            },
+            secondHandItemList(newArr){
+                let type_set = new Set();
+                newArr.map(x=>{
+                    // console.log(`22222${JSON.stringify(x)}`)
+                    type_set.add(x.exchangeType);
+                });
+                // console.log(`11111111${JSON.stringify(type_set)}`)
+                this.typeSet = [...type_set]
             }
         },
         methods: {
@@ -111,7 +117,7 @@
                 let type_set = new Set();
                 this.secondHandItemList.map(x=>{
                     // console.log(`22222${JSON.stringify(x)}`)
-                    type_set.add(x.type);
+                    type_set.add(x.exchangeType);
                 });
                 // console.log(`11111111${JSON.stringify(type_set)}`)
                 this.typeSet = [...type_set]

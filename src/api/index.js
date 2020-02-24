@@ -1,4 +1,4 @@
-import { get,post } from './helpers'
+import { get,post,postImg } from './helpers'
 
 // const getProducIndustry = get('trade/product_industry')
 // const getProducIndustry = get('api/product_industry')
@@ -6,8 +6,9 @@ const getProducIndustry = get()
 // const getCountryInfo = get('trade/country_info')
 // const getSenHadRes = get('trade/second_hand_resource')
 // const getSenHadRes = get('api/second_hand_resource')
-const getSenHadRes = get()
-// const getAfricaMap = get('trade/africa_map')
+const getExchangeEquip = post()
+const getExchangeEquipImg = postImg()
+// const getAfricaMap = post('trade/africa_map')
 // const getNews = get('trade/news')
 // const getNews = get('api/news')
 const getNews = get()
@@ -34,7 +35,8 @@ export {
     getGoods,
     getRatings,
     getCountryInfo,
-    getSenHadRes,
+    getExchangeEquip,
+    getExchangeEquipImg,
     getAfricaMap,
     getNews,
     getCompanyInfo,
