@@ -58,11 +58,32 @@
                 //     "tel":13000000001
                 // }],
                 current_table_content:[{
-                    "index":1,
-                    "type":"求购",
-                    "content":"包装厂处理半自动打钉机1台，17年的设备，广东产，进价28.6万",
-                    "num":1,
-                    "tel":13000000001
+                    "id": 6,
+                    "name": "2手挖掘机",
+                    "count": 1,
+                    "contactorPhone": "13100010002",
+                    "exchangeType": 1,
+                    "state": 1,
+                    "rankOrder": 9999,
+                    "countryId": 1,
+                    "modifyDate": "20191229014256",
+                    "picId": null,
+                    "picInfoList": [
+                        {
+                            "id": 1,
+                            "countryId": null,
+                            "equipId": 6,
+                            "path": "static/equip_img/small-icon_1.jpeg",
+                            "state": 1,
+                            "modifyDate": null,
+                            "imgSize": null,
+                            "imgContent": null
+                        }]
+                    // "index":1,
+                    // "type":"求购",
+                    // "content":"包装厂处理半自动打钉机1台，17年的设备，广东产，进价28.6万",
+                    // "num":1,
+                    // "tel":13000000001
                 }]
             }
         },
@@ -142,13 +163,30 @@
             secondHandItemList:{
                 type: Array,
                 default(){
-                    return [{
-                        "id":1,
-                        "title":"求购 打包机 1台",
-                        "desc":"求购打包机一台，希望8成新，可上门自提。期望价格9元。",
-                        "tel":"18818262629",
-                        "imageUrl":"https://ss2.bdstatic.com/kfoZeXSm1A5BphGlnYG/icon/95490.png"
-                    }]
+                    return [
+                        {
+                            "id": 6,
+                            "name": "2手挖掘机",
+                            "count": 1,
+                            "contactorPhone": "13100010002",
+                            "exchangeType": 1,
+                            "state": 1,
+                            "rankOrder": 9999,
+                            "countryId": 1,
+                            "modifyDate": "20191229014256",
+                            "picId": null,
+                            "picInfoList": [
+                                {
+                                    "id": 1,
+                                    "countryId": null,
+                                    "equipId": 6,
+                                    "path": "static/equip_img/small-icon_1.jpeg",
+                                    "state": 1,
+                                    "modifyDate": null,
+                                    "imgSize": null,
+                                    "imgContent": null
+                                }]
+                        }]
                 }
             },
             comTitle: {

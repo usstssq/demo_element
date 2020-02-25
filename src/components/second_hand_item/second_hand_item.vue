@@ -1,11 +1,11 @@
 <template>
     <div class="second_hand_item">
         <a href="javascript:void(0)" class="second_hand_img">
-            <img :src="imageUrlL" @click="openSecondHandDLG(secondHandItem)" width="130" height="72" alt="图片">
+            <img :if="imageUrlL.length>0" :src="imageUrlL[0]" @click="openSecondHandDLG(csecondHandItem)" width="130" height="72" alt="图片">
         </a>
         <div class="second_hand_desc">
-            <a href="#">{{secondHandItem.name}}</a>
-            <div>数量: {{secondHandItem.count}}  Tel: {{secondHandItem.contactorPhone}}</div>
+            <a href="#">{{csecondHandItem.name}}</a>
+            <div>数量: {{csecondHandItem.count}}  Tel: {{csecondHandItem.contactorPhone}}</div>
         </div>
         <el-dialog
             :visible.sync="dialogVisible"
@@ -13,15 +13,15 @@
             <div class="second-hand-dialog-image">
                 <div class="dialog-image-block">
                     <el-carousel>
-                        <el-carousel-item v-for="item in cImageInfo.cImageList" :key="item">
-                            <img :src="item" type="image/jpeg" >
+                        <el-carousel-item v-for="(item,index) in imageUrlL" :key="item+index">
+                            <img :src="item" type="image/jpeg" width="300px" height="300px">
                         </el-carousel-item>
                     </el-carousel>
                 </div>
                 <div class="second_hand_desc dialog-image-desc">
-                    <a href="#">{{cImageInfo.title}}</a>
-                    <div>{{cImageInfo.content}}</div>
-                    <div>{{cImageInfo.tel}}</div>
+                    <a href="#">{{csecondHandItem.name}}</a>
+                    <div>{{csecondHandItem.state}}</div>
+                    <div>{{csecondHandItem.contactorPhone}}</div>
                 </div>
             </div>
         </el-dialog>
@@ -38,50 +38,65 @@
         name: 'second_had_resource',
         data(){
             return {
-                cImageInfo: {
-                    "cImageList":[
-                        "https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2570243317.jpg",
-                        "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2578045524.jpg",
-                        "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2577437186.jpg"
-                    ],
-                    "id":1,
-                    "title":"求购 打包机 1台",
-                    "desc":"求购打包机一台，希望8成新，可上门自提。期望价格9元。",
-                    "tel":"18818262629",
-                    "imageUrl":"https://ss2.bdstatic.com/kfoZeXSm1A5BphGlnYG/icon/95490.png"
-                },
+                csecondHandItem: [{
+                        "id": 6,
+                        "name": "2手挖掘机",
+                        "count": 1,
+                        "contactorPhone": "13100010002",
+                        "exchangeType": 1,
+                        "state": 1,
+                        "rankOrder": 9999,
+                        "countryId": 1,
+                        "modifyDate": "20191229014256",
+                        "picId": null,
+                        "picInfoList": [
+                            {
+                                "id": 1,
+                                "countryId": null,
+                                "equipId": 6,
+                                "path": "static/equip_img/small-icon_1.jpeg",
+                                "state": 1,
+                                "modifyDate": null,
+                                "imgSize": null,
+                                "imgContent": null
+                            }]
+                }],
                 dialogVisible:false,
-                imageUrlL:""
+                imageUrlL:[]
             }
         },
-        mounted(){
-            this._getExchangeEquip()
+        // watch:{
+        //     secondHandItem(){
+        //         this._getExchangeEquip()
+        //     }            
+        // },
+        watch: {
+            //正确给 cData 赋值的 方法
+            secondHandItem: function(newVal,oldVal){
+                this.csecondHandItem = newVal;  //newVal即是chartData
+                newVal&&this._getExchangeEquip(); //newVal存在的话执行drawChar函数
+            }
         },
+        // mounted(){
+        //     this._getExchangeEquip()
+        // },
         methods: {
-            openSecondHandDLG(xx){
+            openSecondHandDLG(currentItem){
                 this.dialogVisible = true;
-                this.cImageInfo = {
-                    "cImageList":[
-                        "https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2570243317.jpg",
-                        "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2578045524.jpg",
-                        "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2577437186.jpg"
-                    ],
-                    "id":1,
-                    "title":"求购 打包机 1台",
-                    "desc":"求购打包机一台，希望8成新，可上门自提。期望价格9元。",
-                    "tel":"18818262629",
-                    "imageUrl":"https://ss2.bdstatic.com/kfoZeXSm1A5BphGlnYG/icon/95490.png"
-                }
+                this.cImageInfo = currentItem;
             },
             _getExchangeEquip() {
-                let url = "trade/main_content/common/get_img/exchange_equip"
-                getExchangeEquipImg(url,{
-                    "token":"11111",
-                    "id":1,
-                    "countryId":1
-                }).then((exchangeEquipImg) => {
-                    this.imageUrlL = exchangeEquipImg
-                })
+                let url = "trade/main_content/common/get_img/exchange_equip";
+                this.imageUrlL = [];
+                for(let item in this.csecondHandItem.picInfoList){
+                    getExchangeEquipImg(url,{
+                        "id":item.id,
+                        "equipId":item.equipId,
+                        "countryId":item.countryId
+                    }).then((exchangeEquipImg) => {
+                        this.imageUrlL.push(exchangeEquipImg)
+                    })
+                }
             }
         },
         props: {
@@ -89,11 +104,27 @@
                 type:Object,
                 default(){
                     return {
-                        "id":1,
-                        "title":"求购 打包机 1台",
-                        "desc":"求购打包机一台，希望8成新，可上门自提。期望价格9元。",
-                        "tel":"18818262629",
-                        "imageUrl":"https://ss2.bdstatic.com/kfoZeXSm1A5BphGlnYG/icon/95490.png"
+                        "id": 6,
+                        "name": "2手挖掘机",
+                        "count": 1,
+                        "contactorPhone": "13100010002",
+                        "exchangeType": 1,
+                        "state": 1,
+                        "rankOrder": 9999,
+                        "countryId": 1,
+                        "modifyDate": "20191229014256",
+                        "picId": null,
+                        "picInfoList": [
+                            {
+                                "id": 1,
+                                "countryId": null,
+                                "equipId": 6,
+                                "path": "static/equip_img/small-icon_1.jpeg",
+                                "state": 1,
+                                "modifyDate": null,
+                                "imgSize": null,
+                                "imgContent": null
+                            }]
                     }
                 }
             }
