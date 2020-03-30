@@ -59,7 +59,7 @@
                 // }],
                 current_table_content:[{
                     "id": 6,
-                    "name": "2手挖掘机",
+                    "name": "2手挖掘机11",
                     "count": 1,
                     "contactorPhone": "13100010002",
                     "exchangeType": 1,
@@ -78,12 +78,8 @@
                             "modifyDate": null,
                             "imgSize": null,
                             "imgContent": null
-                        }]
-                    // "index":1,
-                    // "type":"求购",
-                    // "content":"包装厂处理半自动打钉机1台，17年的设备，广东产，进价28.6万",
-                    // "num":1,
-                    // "tel":13000000001
+                        }
+                    ]
                 }]
             }
         },

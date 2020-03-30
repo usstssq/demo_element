@@ -4,29 +4,29 @@
         <div class="product_industry_content">
             <el-row>
                 <el-col v-for="(factory,index) in data_list.general" :span="4">
-                    <el-link class="imgscale-top" :underline="false" :href="'/companyDetail/'+factory.l_rank" target="_blank" type="primary">
-                        <img :src="'/'+factory.l_rank" width="16" height="16" class="nav-icon"></img>
-                        {{factory.name}}
+                    <el-link class="imgscale-top" :underline="false" :href="'/companyDetail/'+factory.common.companyId" target="_blank" type="primary">
+                        <img :src="'/'+factory.common.companyId" width="16" height="16" class="nav-icon"></img>
+                        {{factory.common.shortName}}
                     </el-link>
                 </el-col>
             </el-row>
             <el-row>
                 <el-col class = "vip" v-for="(factory,index) in data_list.vip" :span="4">
                     <div class="vip_content imgscale-top boxshodow-hover">
-                        <a :underline="false" :href="factory.v_page_url" target="_blank" type="primary">
+                        <a :underline="false" href="www.baidu.com" target="_blank" type="primary">
                             <div class="img_box">
                                 <div class="imgscale">
-                                    <img :src="factory.v_img_url" :alt="factory.company_name">
+                                    <img :src="factory.v_img_url" :alt="factory.common.shortName">
                                 </div>
                             </div>
                             <div class="title_box">
                                 <div class="title ellipsis-2">
-                                    {{factory.name}}
+                                    {{factory.common.shortName}}
                                 </div>
                             </div>
                             <div class="com_tel">
                                 <div class="ellipsis-2">
-                                    发财热线: {{factory.state}}
+                                    发财热线: {{factory.onsite.onsiteContactPeople}}
                                 </div>
                             </div>
                         </a>
@@ -71,18 +71,51 @@
                     return {
                         "general":[
                             {
-                                "company_name":"XXX厂创",
-                                "url_address":"http://www.baidu.com",
-                                "icon_address":"https://ss2.bdstatic.com/kfoZeXSm1A5BphGlnYG/icon/95490.png"
-                            }
+                                "imageId": null,
+                                "common": {
+                                    "companyId": 1,
+                                    "fullName": "小米科技有限公司",
+                                    "shortName": "小米科技",
+                                    "founder": "雷军",
+                                    "belongIndustryType": "手机",
+                                    "certification": "ISO90001",
+                                    "modifyDate": "2020-03-02T14:14:49.000+0000",
+                                    "state": 1,
+                                    "mainBusinessDesc": "手机;智能电子产品"
+                                },
+                                "onsite": {
+                                    "countryId": 1,
+                                    "companyId": 1,
+                                    "onsiteAddress": "望京东路1号20层",
+                                    "onsiteContactPhone": "010-00210001",
+                                    "onsiteContactPeople": "13010001000",
+                                    "state": 1
+                                }
+                            },
                         ],
                         "vip":[
                             {
-                                "company_name":"XXX厂创",
-                                "url_address":"http://www.baidu.com",
-                                "vip_icon_address":"https://b3.hoopchina.com.cn/images/logo2017/v1/hp_logo_sports.png",
-                                "com_tel":"18818262629"
-                            }
+                                "imageId": 1,
+                                "common": {
+                                    "companyId": 1,
+                                    "fullName": "小米科技有限公司",
+                                    "shortName": "小米科技",
+                                    "founder": "雷军",
+                                    "belongIndustryType": "手机",
+                                    "certification": "ISO90001",
+                                    "modifyDate": "2020-03-02T14:14:49.000+0000",
+                                    "state": 1,
+                                    "mainBusinessDesc": "手机;智能电子产品"
+                                },
+                                "onsite": {
+                                    "countryId": 1,
+                                    "companyId": 1,
+                                    "onsiteAddress": "望京东路1号20层",
+                                    "onsiteContactPhone": "010-00210001",
+                                    "onsiteContactPeople": "13010001000",
+                                    "state": 1
+                                }
+                            },
                         ]
                     }
                 }

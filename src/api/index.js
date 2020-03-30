@@ -2,7 +2,7 @@ import { get,post,postImg } from './helpers'
 
 // const getProducIndustry = get('trade/product_industry')
 // const getProducIndustry = get('api/product_industry')
-const getProducIndustry = get()
+const getProducIndustry = post()
 // const getCountryInfo = get('trade/country_info')
 // const getSenHadRes = get('trade/second_hand_resource')
 // const getSenHadRes = get('api/second_hand_resource')

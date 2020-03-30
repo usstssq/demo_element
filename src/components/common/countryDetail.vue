@@ -88,84 +88,31 @@
         },
         data(){
             return {
-                second_hand_item_list:[{
-                    "id":1,
-                    "type":"求购",
-                    "title":"求购 打包机 1台",
-                    "desc":"求购打包机一台，希望8成新，可上门自提。期望价格9元。",
-                    "tel":"18818262629",
-                    "imageUrl":"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2570243317.jpg"
-                },{
-                    "id":2,
-                    "type":"求购",
-                    "title":"求购 打包机 2台",
-                    "desc":"求购打包机一台，希望8成新，可上门自提。期望价格9元。",
-                    "tel":"18818262629",
-                    "imageUrl":"https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2578045524.jpg"
-                },{
-                    "id":3,
-                    "type":"求购",
-                    "title":"求购 打包机 3台",
-                    "desc":"求购打包机一台，希望8成新，可上门自提。期望价格9元。",
-                    "tel":"18818262629",
-                    "imageUrl":"https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2577437186.jpg"
-                },{
-                    "id":4,
-                    "type":"求购",
-                    "title":"求购 打包机 4台",
-                    "desc":"求购打包机一台，希望8成新，可上门自提。期望价格9元。",
-                    "tel":"18818262629",
-                    "imageUrl":"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2570099577.jpg"
-                },{
-                    "id":5,
-                    "type":"求购",
-                    "title":"求购 打包机 5台",
-                    "desc":"求购打包机一台，希望8成新，可上门自提。期望价格9元。",
-                    "tel":"18818262629",
-                    "imageUrl":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568258113.jpg"
-                },{
-                    "id":6,
-                    "type":"租赁",
-                    "title":"租赁 打包机 5台",
-                    "desc":"租赁打包机一台，希望8成新，可上门自提。期望价格9元。",
-                    "tel":"18818262629",
-                    "imageUrl":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568258113.jpg"
-                },{
-                    "id":7,
-                    "type":"租赁",
-                    "title":"租赁 打包机 5台",
-                    "desc":"租赁打包机一台，希望8成新，可上门自提。期望价格9元。",
-                    "tel":"18818262629",
-                    "imageUrl":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568258113.jpg"
-                },{
-                    "id":8,
-                    "type":"租赁",
-                    "title":"租赁 压瓦机 5台",
-                    "desc":"租赁压瓦机一台，希望8成新，可上门自提。期望价格9元。",
-                    "tel":"18818262629",
-                    "imageUrl":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568258113.jpg"
-                },{
-                    "id":9,
-                    "type":"租赁",
-                    "title":"租赁 压瓦机 5台",
-                    "desc":"租赁压瓦机一台，希望8成新，可上门自提。期望价格9元。",
-                    "tel":"18818262629",
-                    "imageUrl":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568258113.jpg"
-                },{
-                    "id":10,
-                    "type":"出售",
-                    "title":"出售 压瓦机 5台",
-                    "desc":"出售压瓦机一台，希望8成新，可上门自提。期望价格9元。",
-                    "tel":"18818262629",
-                    "imageUrl":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568258113.jpg"
-                },{
-                    "id":11,
-                    "type":"出售",
-                    "title":"出售 压瓦机 5台",
-                    "desc":"出售压瓦机一台，希望8成新，可上门自提。期望价格9元。",
-                    "tel":"18818262629",
-                    "imageUrl":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568258113.jpg"
-                }],
+                second_hand_item_list:[
+                    {
+                            "id": 6,
+                            "name": "2手挖掘机",
+                            "count": 1,
+                            "contactorPhone": "13100010002",
+                            "exchangeType": 1,
+                            "state": 1,
+                            "rankOrder": 9999,
+                            "countryId": 1,
+                            "modifyDate": "20191229014256",
+                            "picId": null,
+                            "picInfoList": [
+                                {
+                                    "id": 1,
+                                    "countryId": null,
+                                    "equipId": 6,
+                                    "path": "static/equip_img/small-icon_1.jpeg",
+                                    "state": 1,
+                                    "modifyDate": null,
+                                    "imgSize": null,
+                                    "imgContent": null
+                                }
+                            ]
+                        }],
                 product_industry_title:"生产制造业",
                 product_link_info:{
                     "link_content":"更多",
@@ -223,10 +170,26 @@
                     ],
                     "vip":[
                         {
-                            "company_name":"XXX厂创",
-                            "url_address":"http://www.baidu.com",
-                            "vip_icon_address":"https://b3.hoopchina.com.cn/images/logo2017/v1/hp_logo_sports.png",
-                            "com_tel":"18818262629"
+                            "imageId": null,
+                            "common": {
+                                "companyId": 1,
+                                "fullName": "小米科技有限公司",
+                                "shortName": "小米科技",
+                                "founder": "雷军",
+                                "belongIndustryType": "手机",
+                                "certification": "ISO90001",
+                                "modifyDate": "2020-03-02T14:14:49.000+0000",
+                                "state": 1,
+                                "mainBusinessDesc": "手机;智能电子产品"
+                            },
+                            "onsite": {
+                                "countryId": 1,
+                                "companyId": 1,
+                                "onsiteAddress": "望京东路1号20层",
+                                "onsiteContactPhone": "010-00210001",
+                                "onsiteContactPeople": "13010001000",
+                                "state": 1
+                            }
                         }
                     ]
                 },
@@ -270,7 +233,7 @@
                 let params = {
                     "top_n":10
                 },
-                url = "api/main_content/1/get_prod_list";
+                url = "trade/main_content/1/get_prod_panel";
                 getProdList(url,params).then((prodlist)=>{
                     this.manufacture_list.general = prodlist;
                     // window.prodlist = prodlist;
@@ -281,7 +244,7 @@
                 let params = {
                     "top_n":10
                 },
-                url = "api/main_content/1/get_prod_vip_panel";
+                url = "trade/main_content/1/get_prod_vip_panel";
                 getProdVipPanel(url,params).then((prodlist)=>{
                     this.manufacture_list.vip = prodlist;
                     // window.prodlist = prodlist;
@@ -292,7 +255,7 @@
                 let params = {
                     "top_n":10
                 },
-                url = "trade/main_content/1/get_equip_list"
+                url = "trade/main_content/1/get_equip_panel"
                 getEquipList(url,params).then((equiplist)=>{
                     // this.equipment_list.vip = equiplist;
                     // 工程设备机械目前后台没有vip的接口，前端先不显示vip接口
@@ -300,7 +263,7 @@
                 })
             },
             _getCountryInfo() {
-                let url = "api/main_content/1/get_country_info"
+                let url = "trade/main_content/11/get_country_info"
                 getCountryInfo(url).then((countryInfo) => {
                     this.country_info_content = countryInfo.introInfo,
                     this.countryin_info_title = countryInfo.nameCh
@@ -329,9 +292,9 @@
                 })
             },
             _getProductIndustry() {
-                let url = "api/product_industry"
+                let url = "trade/main_content/1/get_prod_list"
                 getProducIndustry(url).then((productIndustry) => {
-                    // this.manufacture_list = productIndustry.manufacture_list
+                    this.manufacture_list = productIndustry.manufacture_list
                 })
             },
             _getCompanyInfo(){
