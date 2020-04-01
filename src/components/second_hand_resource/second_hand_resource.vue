@@ -14,14 +14,14 @@
                 </span>
                 <el-dropdown-menu slot="dropdown">
                     <el-checkbox-group v-model = "checkboxVal">
-                        <el-dropdown-item v-for = "item in typeSet">
+                        <el-dropdown-item v-for = "item in typeSet" :key="item">
                             <el-checkbox :label="item">{{item}}</el-checkbox>
                         </el-dropdown-item>
                         </el-checkbox-group>
                 </el-dropdown-menu>
             </el-dropdown>
         </div>
-        <div v-for="second_hand_item in current_table_content">
+        <div v-for="second_hand_item in current_table_content" :key="second_hand_item.id">
             <secondHandItem :secondHandItem="second_hand_item"></secondHandItem>
         </div>
         <el-pagination

@@ -65,18 +65,23 @@
                 imageUrlL:[]
             }
         },
+        created() {
+            this.csecondHandItem = this.secondHandItem;
+            this._getExchangeEquip();
+        },
         // watch:{
         //     secondHandItem(){
         //         this._getExchangeEquip()
         //     }            
         // },
-        watch: {
-            //正确给 cData 赋值的 方法
-            secondHandItem: function(newVal,oldVal){
-                this.csecondHandItem = newVal;  //newVal即是chartData
-                newVal&&this._getExchangeEquip(); //newVal存在的话执行drawChar函数
-            }
-        },
+        // watch: {
+        //     //正确给 cData 赋值的 方法
+        //     secondHandItem: function(newVal,oldVal){
+        //         console.log(`watch secondHandItem....`);
+        //         this.csecondHandItem = newVal;  //newVal即是chartData
+        //         newVal&&this._getExchangeEquip(); //newVal存在的话执行drawChar函数
+        //     }
+        // },
         // mounted(){
         //     this._getExchangeEquip()
         // },

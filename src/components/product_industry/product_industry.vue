@@ -3,7 +3,7 @@
         <comTitle :title="comTitle" :linkInfo="linkInfo"></comTitle>
         <div class="product_industry_content">
             <el-row>
-                <el-col v-for="(factory,index) in data_list.general" :span="4">
+                <el-col v-for="(factory,index) in data_list.general" :key="factory.common.companyId" :span="4">
                     <el-link class="imgscale-top" :underline="false" :href="'/companyDetail/'+factory.common.companyId" target="_blank" type="primary">
                         <img :src="'/'+factory.common.companyId" width="16" height="16" class="nav-icon"></img>
                         {{factory.common.shortName}}

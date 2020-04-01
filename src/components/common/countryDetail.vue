@@ -11,6 +11,7 @@
                 </el-col>
             </el-row>
             <el-row>
+                <!-- 生产制造类企业 -->
                 <el-col :span="24">
                     <div class="grid-content">
                         <productIndustry :data_list="manufacture_list" :comTitle="product_industry_title" :linkInfo="product_link_info"></productIndustry>
@@ -18,6 +19,7 @@
                 </el-col>
             </el-row>
             <el-row>
+                <!-- 工程设备机械 -->
                 <el-col :span="24">
                     <div class="grid-content">
                         <productIndustry :data_list="equipment_list" :comTitle="eng_equipment_title" :linkInfo="eng_equipment_link_info"></productIndustry>
@@ -25,13 +27,15 @@
                 </el-col>
             </el-row>
             <el-row>
+                <!-- 驻外公司名单 -->
                 <el-col :span="24">
                     <div class="grid-content">
-                        <productIndustry :data_list="manufacture_list" :comTitle="overseas_companies_title" :linkInfo="list_overseas_link_info"></productIndustry>
+                        <productIndustry :data_list="oversea_list" :comTitle="overseas_companies_title" :linkInfo="list_overseas_link_info"></productIndustry>
                     </div>
                 </el-col>
             </el-row>
             <el-row>
+                <!-- 本地公司名单 -->
                 <el-col :span="24">
                     <div class="grid-content">
                         <productIndustry :data_list="manufacture_list" :comTitle="local_companies_title" :linkInfo="list_local_company_link_info"></productIndustry>
@@ -39,14 +43,17 @@
                 </el-col>
             </el-row>
             <el-row>
+                <!-- 二手设备信息 -->
                 <el-col :span="18">
                     <secondHandResource v-if="second_hand_item_list.length > 1" :secondHandItemList="second_hand_item_list" comTitle="二手资源交易信息"></secondHandResource>
                 </el-col>
+                <!-- 招聘信息 -->
                 <el-col :span="6">
                     <recruInfo :comTitle="recruitment_title" :linkInfo="recruitment_info" :recruInfoArr="recru_info_arr"></recruInfo>
                 </el-col>
             </el-row>
             <el-row>
+                <!-- 新闻 -->
                 <el-col>
                     <news :comTitle="news_title" :linkInfo="news_link_info" :newsArr="news_arr"></news>
                 </el-col>
@@ -66,7 +73,7 @@
     import africaMap from '~/components/africa_map/africa_map.vue'
     import news from '~/components/news/news.vue'
     import { Container, Main, Row, Col, } from 'element-ui'
-    import { getProdList,getExchangeEquip,getProdVipPanel,getCountryInfo,getNews,getProducIndustry,getCompanyInfo,getEquipList,getrecruInfo } from '~/api/index.js'
+    import { getProdList,getExchangeEquip,getProdVipPanel,getOverSeaList,getCountryInfo,getNews,getProducIndustry,getCompanyInfo,getEquipList,getrecruInfo } from '~/api/index.js'
     import { get,post } from '~/api/helpers.js'
     
     Vue.use(Container);
@@ -88,6 +95,7 @@
         },
         data(){
             return {
+                countryId:1,
                 second_hand_item_list:[
                     {
                             "id": 6,
@@ -163,9 +171,26 @@
                 manufacture_list:{
                     "general":[
                         {
-                            "company_name":"XXX厂创",
-                            "url_address":"http://www.baidu.com",
-                            "icon_address":"https://ss2.bdstatic.com/kfoZeXSm1A5BphGlnYG/icon/95490.png"
+                            "imageId": null,
+                            "common": {
+                                "companyId": 1,
+                                "fullName": "小米科技有限公司",
+                                "shortName": "小米科技",
+                                "founder": "雷军",
+                                "belongIndustryType": "手机",
+                                "certification": "ISO90001",
+                                "modifyDate": "2020-03-02T14:14:49.000+0000",
+                                "state": 1,
+                                "mainBusinessDesc": "手机;智能电子产品"
+                            },
+                            "onsite": {
+                                "countryId": 1,
+                                "companyId": 1,
+                                "onsiteAddress": "望京东路1号20层",
+                                "onsiteContactPhone": "010-00210001",
+                                "onsiteContactPeople": "13010001000",
+                                "state": 1
+                            }
                         }
                     ],
                     "vip":[
@@ -196,12 +221,102 @@
                 equipment_list:{
                     "general":[
                         {
-                            "company_name":"XXX厂创",
-                            "url_address":"http://www.baidu.com",
-                            "icon_address":"https://ss2.bdstatic.com/kfoZeXSm1A5BphGlnYG/icon/95490.png"
+                            "imageId": null,
+                            "common": {
+                                "companyId": 1,
+                                "fullName": "小米科技有限公司",
+                                "shortName": "小米科技",
+                                "founder": "雷军",
+                                "belongIndustryType": "手机",
+                                "certification": "ISO90001",
+                                "modifyDate": "2020-03-02T14:14:49.000+0000",
+                                "state": 1,
+                                "mainBusinessDesc": "手机;智能电子产品"
+                            },
+                            "onsite": {
+                                "countryId": 1,
+                                "companyId": 1,
+                                "onsiteAddress": "望京东路1号20层",
+                                "onsiteContactPhone": "010-00210001",
+                                "onsiteContactPeople": "13010001000",
+                                "state": 1
+                            }
                         }
                     ],
-                    "vip":[]
+                    "vip":[
+                        {
+                            "imageId": null,
+                            "common": {
+                                "companyId": 1,
+                                "fullName": "小米科技有限公司",
+                                "shortName": "小米科技",
+                                "founder": "雷军",
+                                "belongIndustryType": "手机",
+                                "certification": "ISO90001",
+                                "modifyDate": "2020-03-02T14:14:49.000+0000",
+                                "state": 1,
+                                "mainBusinessDesc": "手机;智能电子产品"
+                            },
+                            "onsite": {
+                                "countryId": 1,
+                                "companyId": 1,
+                                "onsiteAddress": "望京东路1号20层",
+                                "onsiteContactPhone": "010-00210001",
+                                "onsiteContactPeople": "13010001000",
+                                "state": 1
+                            }
+                        }
+                    ]
+                },
+                oversea_list:{
+                    "general":[
+                        {
+                            "imageId": null,
+                            "common": {
+                                "companyId": 1,
+                                "fullName": "小米科技有限公司",
+                                "shortName": "小米科技",
+                                "founder": "雷军",
+                                "belongIndustryType": "手机",
+                                "certification": "ISO90001",
+                                "modifyDate": "2020-03-02T14:14:49.000+0000",
+                                "state": 1,
+                                "mainBusinessDesc": "手机;智能电子产品"
+                            },
+                            "onsite": {
+                                "countryId": 1,
+                                "companyId": 1,
+                                "onsiteAddress": "望京东路1号20层",
+                                "onsiteContactPhone": "010-00210001",
+                                "onsiteContactPeople": "13010001000",
+                                "state": 1
+                            }
+                        }
+                    ],
+                    "vip":[
+                        {
+                            "imageId": null,
+                            "common": {
+                                "companyId": 1,
+                                "fullName": "小米科技有限公司",
+                                "shortName": "小米科技",
+                                "founder": "雷军",
+                                "belongIndustryType": "手机",
+                                "certification": "ISO90001",
+                                "modifyDate": "2020-03-02T14:14:49.000+0000",
+                                "state": 1,
+                                "mainBusinessDesc": "手机;智能电子产品"
+                            },
+                            "onsite": {
+                                "countryId": 1,
+                                "companyId": 1,
+                                "onsiteAddress": "望京东路1号20层",
+                                "onsiteContactPhone": "010-00210001",
+                                "onsiteContactPeople": "13010001000",
+                                "state": 1
+                            }
+                        }
+                    ]
                 },
                 company_info_content:{
                     content:"百度是一家好公司！",
@@ -218,22 +333,25 @@
             }
         },
         created() {
+            this.countryId = localStorage.getItem("countryId"),
             this._getCountryInfo(),
-            this._getProductIndustry(),
             this._getExchangeEquip(),
             this._getNews(),
             this._getProdList(),
             this._getProdVipPanel(),
             this._getEquipmentList(),
+            this._getEquipmentVipList(),
             this._getCompanyInfo(),
+            this._getOverSeaList(),
             this._getRecruInfo()
+            console.log(`countryId:${this.countryId}`)
         },
         methods: {
             _getProdList(){
                 let params = {
                     "top_n":10
                 },
-                url = "trade/main_content/1/get_prod_panel";
+                url = `trade/main_content/${this.countryId}/get_prod_panel`;
                 getProdList(url,params).then((prodlist)=>{
                     this.manufacture_list.general = prodlist;
                     // window.prodlist = prodlist;
@@ -244,7 +362,7 @@
                 let params = {
                     "top_n":10
                 },
-                url = "trade/main_content/1/get_prod_vip_panel";
+                url = `trade/main_content/${this.countryId}/get_prod_vip_panel`;
                 getProdVipPanel(url,params).then((prodlist)=>{
                     this.manufacture_list.vip = prodlist;
                     // window.prodlist = prodlist;
@@ -255,15 +373,48 @@
                 let params = {
                     "top_n":10
                 },
-                url = "trade/main_content/1/get_equip_panel"
+                url = `trade/main_content/${this.countryId}/get_equip_panel`
                 getEquipList(url,params).then((equiplist)=>{
                     // this.equipment_list.vip = equiplist;
                     // 工程设备机械目前后台没有vip的接口，前端先不显示vip接口
                     this.equipment_list.general = equiplist;
                 })
             },
+            _getEquipmentVipList(){
+                let params = {
+                    "top_n":10
+                },
+                url = `trade/main_content/${this.countryId}/get_equip_vip_panel`
+                getEquipList(url,params).then((equiplist)=>{
+                    // this.equipment_list.vip = equiplist;
+                    // 工程设备机械目前后台没有vip的接口，前端先不显示vip接口
+                    this.equipment_list.vip = equiplist;
+                })
+            },
+            _getOverSeaList(){
+                let params = {
+                    "top_n":10
+                },
+                url = `trade/main_content/${this.countryId}/get_oversea_panel`
+                getOverSeaList(url,params).then((oversealist)=>{
+                    // this.equipment_list.vip = equiplist;
+                    // 工程设备机械目前后台没有vip的接口，前端先不显示vip接口
+                    this.oversea_list.general = oversealist;
+                })
+            },
+            _getOverSeaVipList(){
+                let params = {
+                    "top_n":10
+                },
+                url = `trade/main_content/${this.countryId}/get_oversea_vip_panel`
+                getOverSeaList(url,params).then((equiplist)=>{
+                    // this.equipment_list.vip = equiplist;
+                    // 工程设备机械目前后台没有vip的接口，前端先不显示vip接口
+                    this.oversea_list.vip = equiplist;
+                })
+            },
             _getCountryInfo() {
-                let url = "trade/main_content/11/get_country_info"
+                let url = `trade/main_content/${this.countryId}/get_country_info`
                 getCountryInfo(url).then((countryInfo) => {
                     this.country_info_content = countryInfo.introInfo,
                     this.countryin_info_title = countryInfo.nameCh
@@ -272,7 +423,7 @@
                 })
             },
             _getExchangeEquip() {
-                let url = "trade/main_content/1/get_exchange_equip_full_info"
+                let url = `trade/main_content/${this.countryId}/get_exchange_equip_full_info`
                 getExchangeEquip(url,{"top_n":500}).then((exchangeEquipInfo) => {
                     this.second_hand_item_list = exchangeEquipInfo
                 })
@@ -285,16 +436,10 @@
                 })
             },
             _getRecruInfo(){
-                let url = "api/main_content/1/recruitment_info";
+                let url = `api/main_content/${this.countryId}/recruitment_info`;
                 this.recruitment_info.link_href = "/recruitment_info/more/1"
                 getrecruInfo(url,{"token":window.localStorage.token}).then((recruInfo)=>{
                     this.recru_info_arr = recruInfo
-                })
-            },
-            _getProductIndustry() {
-                let url = "trade/main_content/1/get_prod_list"
-                getProducIndustry(url).then((productIndustry) => {
-                    this.manufacture_list = productIndustry.manufacture_list
                 })
             },
             _getCompanyInfo(){

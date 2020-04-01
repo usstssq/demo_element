@@ -81,7 +81,9 @@
 
     import * as d3 from "d3"
     import { getAfricaMap } from '~/api/index.js'
-
+    import Vue from 'vue'
+    import Router from 'vue-router'
+    Vue.use(Router);
     var data = d3.range(0, 9);
 
     let tooltip = d3.select("body").append("div").style("position", "absolute").style("z-index", "10").style("visibility", "hidden").attr("class", "tooltip");
@@ -152,6 +154,21 @@
         document.body.addEventListener('mouseout', function(e) {
             if (e.target.nodeName == 'path') hideDetail();
         });
+        document.body.addEventListener('click',function(e){
+            // console.log(11111111);
+            if (e.target.nodeName == 'path') {
+                let d_info = d3.select(e.target).data()[0]["info"];
+                localStorage.setItem("countryId",d_info["countryId"]);
+                // window.open("/countryDetail")
+                window.$router.push({
+                    path: '/countryDetail'
+                })
+                // this.$router.push({
+                //     path: '/countryDetail'
+                // })
+                // console.log(JSON.stringify(d_info));
+            }
+        });
     }
     const update = geojson => {
         const u = d3.select("#content g.map")
@@ -193,7 +210,8 @@
             var curr_item = {
                 "info":{
                     "have_orgin_flag":map_data[i].ifHaveAgentFlag,
-                    "background_color":map_data[i].bgColor
+                    "background_color":map_data[i].bgColor,
+                    "countryId":map_data[i].countryId
                 },
                 "type":map_data[i].type1,
                 "properties":{
