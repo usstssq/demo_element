@@ -118,7 +118,7 @@
                 let params = {
                     "top_n":10
                 },
-                url = `api/main_content/${this.$route.params.companyid}/get_company_detail`;
+                url = `trade/main_content/${this.$route.params.companyid}/get_company_info`;
                 getCompanyDetail(url,params).then((companyDetail)=>{
                     this.company_name = companyDetail.company_name
                     this.company_info = companyDetail.company_info

@@ -8,6 +8,7 @@ const getProducIndustry = post()
 // const getSenHadRes = get('api/second_hand_resource')
 const getExchangeEquip = post()
 const getExchangeEquipImg = postImg()
+const getImg = postImg()
 // const getAfricaMap = post('trade/africa_map')
 // const getNews = get('trade/news')
 // const getNews = get('api/news')
@@ -48,5 +49,6 @@ export {
     getCompanyDetail,
     validateStatus,
     getrecruInfo,
-    getOverSeaList
+    getOverSeaList,
+    getImg
 }

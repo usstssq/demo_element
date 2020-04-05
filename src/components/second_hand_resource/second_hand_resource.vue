@@ -22,7 +22,7 @@
             </el-dropdown>
         </div>
         <div v-for="second_hand_item in current_table_content" :key="second_hand_item.id">
-            <secondHandItem :secondHandItem="second_hand_item"></secondHandItem>
+            <secondHandItem :secondHandItem="second_hand_item" :imageUrl="image_url"></secondHandItem>
         </div>
         <el-pagination
             background
@@ -47,6 +47,7 @@
         },
         data(){
             return {
+                image_url:"exchange_equip",
                 checkboxVal:[],
                 typeSet:[],
                 search:"",

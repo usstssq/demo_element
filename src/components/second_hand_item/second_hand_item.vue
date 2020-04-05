@@ -36,38 +36,48 @@
     Vue.use(Divider);
     export default {
         name: 'second_had_resource',
-        data(){
-            return {
-                csecondHandItem: [{
-                        "id": 6,
-                        "name": "2手挖掘机",
-                        "count": 1,
-                        "contactorPhone": "13100010002",
-                        "exchangeType": 1,
-                        "state": 1,
-                        "rankOrder": 9999,
-                        "countryId": 1,
-                        "modifyDate": "20191229014256",
-                        "picId": null,
-                        "picInfoList": [
-                            {
-                                "id": 1,
-                                "countryId": null,
-                                "equipId": 6,
-                                "path": "static/equip_img/small-icon_1.jpeg",
-                                "state": 1,
-                                "modifyDate": null,
-                                "imgSize": null,
-                                "imgContent": null
-                            }]
-                }],
-                dialogVisible:false,
-                imageUrlL:[]
+        props: {
+            imageUrl:{
+                type: String,
+                default(){
+                    return ""
+                }
+            },
+            secondHandItem:{
+                type:Object,
+                default(){
+                    return {
+                            "id": 3,
+                            "name": "奔驰转让,17万公里",
+                            "count": 1,
+                            "contactorPhone": "13100010002",
+                            "exchangeType": 0,
+                            "state": 1,
+                            "rankOrder": 1,
+                            "countryId": 11,
+                            "modifyDate": "20191229014256",
+                            "picId": null,
+                            "picInfoList": [
+                                {
+                                    "id": 13,
+                                    "countryId": null,
+                                    "equipId": 3,
+                                    "path": "static/exchage_info/Benz_lz_1.jpg",
+                                    "state": 1,
+                                    "modifyDate": "20200401230151",
+                                    "imgSize": null,
+                                    "imgContent": null
+                                }
+                            ]
+                    }
+                }
             }
         },
         created() {
             this.csecondHandItem = this.secondHandItem;
-            this._getExchangeEquip();
+            window.csecondHandItem = this.secondHandItem;
+            console.log(`init csecondHandItem....`);
+            // this._getExchangeEquip();
         },
         // watch:{
         //     secondHandItem(){
@@ -76,63 +86,76 @@
         // },
         // watch: {
         //     //正确给 cData 赋值的 方法
-        //     secondHandItem: function(newVal,oldVal){
-        //         console.log(`watch secondHandItem....`);
-        //         this.csecondHandItem = newVal;  //newVal即是chartData
-        //         newVal&&this._getExchangeEquip(); //newVal存在的话执行drawChar函数
+        //     secondHandItem:{
+        //         handler(newVal,oldVal){
+        //             console.log(`watch secondHandItem....`);
+        //             this.csecondHandItem = newVal;  //newVal即是chartData
+        //             newVal&&this._getExchangeEquip(); //newVal存在的话执行drawChar函数
+        //         },
+        //         deep:true
         //     }
         // },
-        // mounted(){
-        //     this._getExchangeEquip()
-        // },
+        data(){
+            return {
+                csecondHandItem:{
+                    type:Object,
+                    default(){
+                        return {
+                            "id": 3,
+                            "name": "奔驰转让,17万公里",
+                            "count": 1,
+                            "contactorPhone": "13100010002",
+                            "exchangeType": 0,
+                            "state": 1,
+                            "rankOrder": 1,
+                            "countryId": 11,
+                            "modifyDate": "20191229014256",
+                            "picId": null,
+                            "picInfoList": [
+                                {
+                                    "id": 13,
+                                    "countryId": null,
+                                    "equipId": 3,
+                                    "path": "static/exchage_info/Benz_lz_1.jpg",
+                                    "state": 1,
+                                    "modifyDate": "20200401230151",
+                                    "imgSize": null,
+                                    "imgContent": null
+                                }
+                            ]
+                        }
+                    }
+                },
+                dialogVisible:false,
+                imageUrlL:[]
+            }
+        },
         methods: {
             openSecondHandDLG(currentItem){
                 this.dialogVisible = true;
                 this.cImageInfo = currentItem;
             },
             _getExchangeEquip() {
-                let url = "trade/main_content/common/get_img/exchange_equip";
+                let url = `trade/main_content/common/get_img/${this.imageUrl}`;
                 this.imageUrlL = [];
-                for(let item in this.csecondHandItem.picInfoList){
-                    getExchangeEquipImg(url,{
-                        "id":item.id,
-                        "equipId":item.equipId,
-                        "countryId":item.countryId
-                    }).then((exchangeEquipImg) => {
-                        this.imageUrlL.push(exchangeEquipImg)
-                    })
-                }
-            }
-        },
-        props: {
-            secondHandItem:{
-                type:Object,
-                default(){
-                    return {
-                        "id": 6,
-                        "name": "2手挖掘机",
-                        "count": 1,
-                        "contactorPhone": "13100010002",
-                        "exchangeType": 1,
-                        "state": 1,
-                        "rankOrder": 9999,
-                        "countryId": 1,
-                        "modifyDate": "20191229014256",
-                        "picId": null,
-                        "picInfoList": [
-                            {
-                                "id": 1,
-                                "countryId": null,
-                                "equipId": 6,
-                                "path": "static/equip_img/small-icon_1.jpeg",
-                                "state": 1,
-                                "modifyDate": null,
-                                "imgSize": null,
-                                "imgContent": null
-                            }]
+                if(this.imageUrl){
+                    for(let item in this.csecondHandItem.picInfoList){
+                        getExchangeEquipImg(url,{
+                            "id":this.csecondHandItem.picInfoList[item].id,
+                            "equipId":this.csecondHandItem.picInfoList[item].equipId,
+                            "countryId":this.csecondHandItem.picInfoList[item].countryId
+                        }).then((exchangeEquipImg) => {
+                            this.imageUrlL.push(exchangeEquipImg)
+                        })
                     }
                 }
+                window.imageUrlLL = this.imageUrlL;
+                console.log(`_getExchangeEquip this.imageUrlLL:${this.imageUrlL.length}`);
             }
+        },
+        mounted(){
+            this._getExchangeEquip()
+            console.log(`mounted....`);
         }
     }
 </script>

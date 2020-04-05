@@ -14,7 +14,7 @@
                 <!-- 生产制造类企业 -->
                 <el-col :span="24">
                     <div class="grid-content">
-                        <productIndustry :data_list="manufacture_list" :comTitle="product_industry_title" :linkInfo="product_link_info"></productIndustry>
+                        <productIndustry :data_list="manufacture_list" :comTitle="product_industry_title" :linkInfo="product_link_info" :prod_type="prod_vip_panel"></productIndustry>
                     </div>
                 </el-col>
             </el-row>
@@ -22,7 +22,7 @@
                 <!-- 工程设备机械 -->
                 <el-col :span="24">
                     <div class="grid-content">
-                        <productIndustry :data_list="equipment_list" :comTitle="eng_equipment_title" :linkInfo="eng_equipment_link_info"></productIndustry>
+                        <productIndustry :data_list="equipment_list" :comTitle="eng_equipment_title" :linkInfo="eng_equipment_link_info" :prod_type="equip_vip_panel"></productIndustry>
                     </div>
                 </el-col>
             </el-row>
@@ -30,7 +30,7 @@
                 <!-- 驻外公司名单 -->
                 <el-col :span="24">
                     <div class="grid-content">
-                        <productIndustry :data_list="oversea_list" :comTitle="overseas_companies_title" :linkInfo="list_overseas_link_info"></productIndustry>
+                        <productIndustry :data_list="oversea_list" :comTitle="overseas_companies_title" :linkInfo="list_overseas_link_info" :prod_type="oversea_vip_panel"></productIndustry>
                     </div>
                 </el-col>
             </el-row>
@@ -38,7 +38,7 @@
                 <!-- 本地公司名单 -->
                 <el-col :span="24">
                     <div class="grid-content">
-                        <productIndustry :data_list="manufacture_list" :comTitle="local_companies_title" :linkInfo="list_local_company_link_info"></productIndustry>
+                        <!-- <productIndustry :data_list="manufacture_list" :comTitle="local_companies_title" :linkInfo="list_local_company_link_info"></productIndustry> -->
                     </div>
                 </el-col>
             </el-row>
@@ -95,6 +95,9 @@
         },
         data(){
             return {
+                equip_vip_panel:"equip_vip_panel",
+                prod_vip_panel:"prod_vip_panel",
+                oversea_vip_panel:"oversea_vip_panel",
                 countryId:1,
                 second_hand_item_list:[
                     {
@@ -336,14 +339,15 @@
             this.countryId = localStorage.getItem("countryId"),
             this._getCountryInfo(),
             this._getExchangeEquip(),
-            this._getNews(),
+            // this._getNews(),
             this._getProdList(),
             this._getProdVipPanel(),
             this._getEquipmentList(),
             this._getEquipmentVipList(),
-            this._getCompanyInfo(),
+            // this._getCompanyInfo(),
             this._getOverSeaList(),
-            this._getRecruInfo()
+            this._getRecruInfo(),
+            this._getOverSeaVipList()
             console.log(`countryId:${this.countryId}`)
         },
         methods: {
@@ -424,7 +428,8 @@
             },
             _getExchangeEquip() {
                 let url = `trade/main_content/${this.countryId}/get_exchange_equip_full_info`
-                getExchangeEquip(url,{"top_n":500}).then((exchangeEquipInfo) => {
+                // let url = `trade/main_content/1/get_exchange_equip_full_info`
+                getExchangeEquip(url).then((exchangeEquipInfo) => {
                     this.second_hand_item_list = exchangeEquipInfo
                 })
             },
@@ -436,7 +441,8 @@
                 })
             },
             _getRecruInfo(){
-                let url = `api/main_content/${this.countryId}/recruitment_info`;
+                let url = `trade/main_content/${this.countryId}/recruitment_info`;
+                // let url = `trade/main_content/1/recruitment_info`;
                 this.recruitment_info.link_href = "/recruitment_info/more/1"
                 getrecruInfo(url,{"token":window.localStorage.token}).then((recruInfo)=>{
                     this.recru_info_arr = recruInfo

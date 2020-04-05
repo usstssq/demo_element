@@ -159,6 +159,7 @@
             if (e.target.nodeName == 'path') {
                 let d_info = d3.select(e.target).data()[0]["info"];
                 localStorage.setItem("countryId",d_info["countryId"]);
+                tooltip.style("visibility", "hidden");
                 // window.open("/countryDetail")
                 window.$router.push({
                     path: '/countryDetail'

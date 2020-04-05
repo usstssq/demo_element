@@ -3,7 +3,7 @@
         <comTitle :title="comTitle" :linkInfo="linkInfo"></comTitle>
         <div class="product_industry_content">
             <el-row>
-                <el-col v-for="(factory,index) in data_list.general" :key="factory.common.companyId" :span="4">
+                <el-col v-for="(factory,index) in cdata_list.general" :key="factory.common.companyId" :span="4">
                     <el-link class="imgscale-top" :underline="false" :href="'/companyDetail/'+factory.common.companyId" target="_blank" type="primary">
                         <img :src="'/'+factory.common.companyId" width="16" height="16" class="nav-icon"></img>
                         {{factory.common.shortName}}
@@ -11,12 +11,12 @@
                 </el-col>
             </el-row>
             <el-row>
-                <el-col class = "vip" v-for="(factory,index) in data_list.vip" :span="4">
+                <el-col class = "vip" v-for="(factory,index) in cdata_list.vip" :span="4">
                     <div class="vip_content imgscale-top boxshodow-hover">
                         <a :underline="false" href="www.baidu.com" target="_blank" type="primary">
                             <div class="img_box">
                                 <div class="imgscale">
-                                    <img :src="factory.v_img_url" :alt="factory.common.shortName">
+                                    <img :src="imageUrlL[index]" :alt="factory.common.shortName">
                                 </div>
                             </div>
                             <div class="title_box">
@@ -41,6 +41,7 @@
     import { Divider, Row, Col, } from 'element-ui'
     import 'element-ui/lib/theme-chalk/index.css';
     import comTitle from '~/components/common/comTitle.vue'
+    import { getImg } from '~/api/index.js'
     // import { getProducIndustry } from '~/api/index.js'
 
     Vue.use(Divider);
@@ -51,6 +52,12 @@
         },
         props: {
             comTitle: {
+                type: String,
+                default(){
+                    return ""
+                }
+            },
+            prod_type:{
                 type: String,
                 default(){
                     return ""
@@ -119,6 +126,124 @@
                         ]
                     }
                 }
+            }
+        },
+        created() {
+            this.cdata_list = this.data_list;
+            window.cdata_list = this.cdata_list
+            console.log(`init cdata_list....`);
+            console.log(`created this.cdata_list.vip.length:${this.cdata_list.vip&this.cdata_list.vip.length}`)
+            // this._getVipImg();
+        },
+        // watch: {
+        //     //正确给 cdata_list 赋值的 方法
+        //     data_list:function(newVal,oldVal){
+        //         console.log(`watch data_list....`);
+        //         this.cdata_list = newVal;  //newVal即是chartData
+        //         newVal&&this._getVipImg(); //newVal存在的话执行drawChar函数
+        //     },
+        //     deep: true
+        // },
+        watch: {
+            //正确给 cdata_list 赋值的 方法
+            data_list:{
+                handler(newVal,oldVal){
+                    console.log(`watch data_list....`);
+                    this.cdata_list = newVal;  //newVal即是chartData
+                    newVal&&this._getVipImg(); //newVal存在的话执行drawChar函数
+                },
+                deep:true
+            }
+        },
+        // mounted(){
+        //     console.log(`mounted this.cdata_list.vip.length:${this.cdata_list.vip&this.cdata_list.vip.length}`)
+        //     this._getVipImg()
+        //     console.log(`mounted....`);
+        // },
+        data(){
+            return {
+                imageUrlL:[],
+                cdata_list:{
+                    type:Object,
+                    default(){
+                        return {
+                            "general":[
+                                {
+                                    "imageId": null,
+                                    "common": {
+                                        "companyId": 1,
+                                        "fullName": "小米科技有限公司",
+                                        "shortName": "小米科技",
+                                        "founder": "雷军",
+                                        "belongIndustryType": "手机",
+                                        "certification": "ISO90001",
+                                        "modifyDate": "2020-03-02T14:14:49.000+0000",
+                                        "state": 1,
+                                        "mainBusinessDesc": "手机;智能电子产品"
+                                    },
+                                    "onsite": {
+                                        "countryId": 1,
+                                        "companyId": 1,
+                                        "onsiteAddress": "望京东路1号20层",
+                                        "onsiteContactPhone": "010-00210001",
+                                        "onsiteContactPeople": "13010001000",
+                                        "state": 1
+                                    }
+                                },
+                            ],
+                            "vip":[
+                                {
+                                    "imageId": 1,
+                                    "common": {
+                                        "companyId": 1,
+                                        "fullName": "小米科技有限公司",
+                                        "shortName": "小米科技",
+                                        "founder": "雷军",
+                                        "belongIndustryType": "手机",
+                                        "certification": "ISO90001",
+                                        "modifyDate": "2020-03-02T14:14:49.000+0000",
+                                        "state": 1,
+                                        "mainBusinessDesc": "手机;智能电子产品"
+                                    },
+                                    "onsite": {
+                                        "countryId": 1,
+                                        "companyId": 1,
+                                        "onsiteAddress": "望京东路1号20层",
+                                        "onsiteContactPhone": "010-00210001",
+                                        "onsiteContactPeople": "13010001000",
+                                        "state": 1
+                                    }
+                                },
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        methods: {
+            openSecondHandDLG(currentItem){
+                this.dialogVisible = true;
+                this.cImageInfo = currentItem;
+            },
+            _getVipImg() {
+                let url = `trade/main_content/common/get_img/${this.prod_type}`;
+                this.imageUrlL = [];
+                if(this.prod_type){
+                    console.log(`_getVipImg this.cdata_list.vip.length:${this.cdata_list.vip&this.cdata_list.vip.length}`)
+                    for(let index in this.cdata_list.vip){
+                        // console.log(JSON.stringify(item))
+                        getImg(url, {
+                                id:this.cdata_list.vip[index].imageId,
+                                countryId:this.cdata_list.vip[index].onsite.countryId
+                                // "id":item.id,
+                                // "countryId":item.countryId
+                        }).then((exchangeEquipImg) => {
+                            this.imageUrlL.push(exchangeEquipImg)
+                        })
+                    }
+                }
+                window.imageUrlL=this.imageUrlL;
+                console.log(`_getVipImg this.imageUrlL:${this.imageUrlL.length}`)
             }
         }
         // created() {
