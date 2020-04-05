@@ -130,9 +130,9 @@
         },
         created() {
             this.cdata_list = this.data_list;
-            window.cdata_list = this.cdata_list
-            console.log(`init cdata_list....`);
-            console.log(`created this.cdata_list.vip.length:${this.cdata_list.vip&this.cdata_list.vip.length}`)
+            // window.cdata_list = this.cdata_list
+            // console.log(`init cdata_list....`);
+            // console.log(`created this.cdata_list.vip.length:${this.cdata_list.vip&this.cdata_list.vip.length}`)
             // this._getVipImg();
         },
         // watch: {
@@ -229,7 +229,7 @@
                 let url = `trade/main_content/common/get_img/${this.prod_type}`;
                 this.imageUrlL = [];
                 if(this.prod_type){
-                    console.log(`_getVipImg this.cdata_list.vip.length:${this.cdata_list.vip&this.cdata_list.vip.length}`)
+                    // console.log(`_getVipImg this.cdata_list.vip.length:${this.cdata_list.vip&this.cdata_list.vip.length}`)
                     for(let index in this.cdata_list.vip){
                         // console.log(JSON.stringify(item))
                         getImg(url, {
@@ -239,11 +239,15 @@
                                 // "countryId":item.countryId
                         }).then((exchangeEquipImg) => {
                             this.imageUrlL.push(exchangeEquipImg)
+                            if(this.imageUrlL.length>this.cdata_list.vip.length){
+                            	this.imageUrlL = this.imageUrlL.slice(1)
+                            }
+                            // console.log(`_getVipImg this.imageUrlL:${this.imageUrlL.length}`)
                         })
                     }
                 }
-                window.imageUrlL=this.imageUrlL;
-                console.log(`_getVipImg this.imageUrlL:${this.imageUrlL.length}`)
+                // window.imageUrlL=this.imageUrlL;
+                // console.log(`_getVipImg this.imageUrlL:${this.imageUrlL.length}`)
             }
         }
         // created() {
@@ -291,7 +295,7 @@
         padding-left:5px;
     }
     a:hover{
-        background : #eee
+        background : #eee;
     }
     .el-link--inner{
         display:inline-block;
@@ -313,13 +317,15 @@
     .vip_content{
         position: relative;
         border-radius: 8px;
+        background-color: #5284E6;
         height:100%;
         box-shadow: 0 1px 4px 0 rgba(0,0,0,.1);        
     }
     .vip a{
         display:block;
         text-decoration:none;
-        color:#409EFF;
+        /*color:#409EFF;*/
+        color:#fff;
         padding-left:40%;
         width:60%;
         height:100%;
@@ -328,8 +334,16 @@
     .product_industry_content a:{
         color:black;
     }
+    /*.product_industry_content a:hover{*/
+        /*background-color:#409EFF;*/
+        /*color:black;*/
+    /*}*/
     .product_industry_content a:hover{
         background-color:#FFFFFF;
+    }
+    .product_industry_content .vip a:hover{
+        background-color:#409EFF;
+        /*color:black;*/
     }
     .img_box {
         /*width: 40%;*/
@@ -346,13 +360,15 @@
     .imgscale {
         overflow: hidden;
         border-radius: 8px!important;
+        height: 100%;
     }
     .imgscale img {
         transition: all .4s ease-in-out;
         width: 100%;
+        height: 100%;
     }
     .imgscale img:hover {
-        transform: scale(1.1);
+        transform: scale(1.3);
     }
     .ellipsis-2 {
         display: -webkit-box!important;
@@ -367,7 +383,7 @@
         box-shadow: 0 2px 8px 0 rgba(0,0,0,.1)!important
     }
     .imgscale-top:hover img {
-        transform: scale(1.1)
+        transform: scale(1.3)
     }
 
 </style>

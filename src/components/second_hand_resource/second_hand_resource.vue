@@ -39,6 +39,10 @@
     import 'element-ui/lib/theme-chalk/index.css';
     import secondHandItem from '~/components/second_hand_item/second_hand_item.vue'
 
+    let type_map = {
+        "1":"求购",
+        "0":"转让"
+    };
     Vue.use(Divider);
     export default {
         name: 'second_had_resource',
@@ -98,7 +102,7 @@
                     if (search||this.checkboxVal.length!=0) {
                         const filter_table_content = this.secondHandItemList.filter(dataNews => {
                              return this.checkboxVal.length == 0 ? Object.keys(dataNews).some(key => {return String(dataNews[key]).toLowerCase().indexOf(search) > -1}):
-                             (Object.keys(dataNews).some(key => {return String(dataNews[key]).toLowerCase().indexOf(search) > -1})&this.checkboxVal.indexOf(dataNews.exchangeType) > -1)
+                             (Object.keys(dataNews).some(key => {return String(dataNews[key]).toLowerCase().indexOf(search) > -1})&this.checkboxVal.indexOf(type_map[dataNews.exchangeType]) > -1)
                         })
                         this.current_table_content = filter_table_content.slice(0,5)
                         return filter_table_content
@@ -115,14 +119,14 @@
         watch:{
             checkboxVal(valArr) {
                 this.secondHandItemListNow = this.secondHandItemList.filter(x=>{
-                    return valArr.indexOf(x.exchangeType) > -1
+                    return valArr.indexOf(type_map[x.exchangeType]) > -1
                 })
             },
             secondHandItemList(newArr){
                 let type_set = new Set();
                 newArr.map(x=>{
                     // console.log(`22222${JSON.stringify(x)}`)
-                    type_set.add(x.exchangeType);
+                    type_set.add(type_map[x.exchangeType]);
                 });
                 // console.log(`11111111${JSON.stringify(type_set)}`)
                 this.typeSet = [...type_set]
@@ -135,7 +139,7 @@
                 let type_set = new Set();
                 this.secondHandItemList.map(x=>{
                     // console.log(`22222${JSON.stringify(x)}`)
-                    type_set.add(x.exchangeType);
+                    type_set.add(type_map[x.exchangeType]);
                 });
                 // console.log(`11111111${JSON.stringify(type_set)}`)
                 this.typeSet = [...type_set]

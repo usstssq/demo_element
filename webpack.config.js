@@ -80,7 +80,8 @@ module.exports = (options = {}) => ({
         changeOrigin: true,
         pathRewrite: {
           // '^/trade': '/trade'
-          '^/trade': '/shs'
+          '^/trade': '/shs',
+          '^/companyDetail/trade': '/shs'
         }
       },
       '/api/': {

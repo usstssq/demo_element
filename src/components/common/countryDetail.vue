@@ -145,13 +145,13 @@
                     "link_href":"https://www.hupu.com/"
                 },
                 countryin_info_title:"",
-                company_name:"百度",
+                company_name:"双禾盛非洲信息共享平台",
                 country_info_content:"",
                 second_hand_resource_link_info:{
                     "link_content":"更多",
                     "link_href":"https://www.hupu.com/"                    
                 },
-                news_title:"",
+                news_title:"新闻公告",
                 recruitment_title:"招聘信息",
                 news_link_info:{
                     "link_content":"更多",
@@ -322,8 +322,8 @@
                     ]
                 },
                 company_info_content:{
-                    content:"百度是一家好公司！",
-                    phone:"18818262629"
+                    content:"双禾盛阿尔及利亚站负责人，付永强",
+                    phone:"0774477777"
                 }
             }
         },
@@ -339,7 +339,7 @@
             this.countryId = localStorage.getItem("countryId"),
             this._getCountryInfo(),
             this._getExchangeEquip(),
-            // this._getNews(),
+            this._getNews(),
             this._getProdList(),
             this._getProdVipPanel(),
             this._getEquipmentList(),
@@ -434,10 +434,10 @@
                 })
             },
             _getNews(){
-                let url = "api/news"
+                let url = `trade/main_content/${this.countryId}/get_news`
                 getNews(url).then((news)=>{
-                    this.news_title = news.news_title,
-                    this.news_arr = news.news_content
+                    // this.news_title = news.news_title,
+                    this.news_arr = news
                 })
             },
             _getRecruInfo(){

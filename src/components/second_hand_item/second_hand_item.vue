@@ -1,7 +1,8 @@
 <template>
     <div class="second_hand_item">
         <a href="javascript:void(0)" class="second_hand_img">
-            <img :if="imageUrlL.length>0" :src="imageUrlL[0]" @click="openSecondHandDLG(csecondHandItem)" width="130" height="72" alt="图片">
+            <div class="noimage" v-if="csecondHandItem.picInfoList.length==0">无图片</div>
+            <img v-if="csecondHandItem.picInfoList.length>0" :src="imageUrlL[0]" @click="openSecondHandDLG(csecondHandItem)" width="130" height="72" alt="图片">
         </a>
         <div class="second_hand_desc">
             <a href="#">{{csecondHandItem.name}}</a>
@@ -14,14 +15,14 @@
                 <div class="dialog-image-block">
                     <el-carousel>
                         <el-carousel-item v-for="(item,index) in imageUrlL" :key="item+index">
-                            <img :src="item" type="image/jpeg" width="300px" height="300px">
+                            <img :src="item" v-if="item" type="image/jpeg" width="100%" height="250px">
                         </el-carousel-item>
                     </el-carousel>
                 </div>
                 <div class="second_hand_desc dialog-image-desc">
-                    <a href="#">{{csecondHandItem.name}}</a>
-                    <div>{{csecondHandItem.state}}</div>
-                    <div>{{csecondHandItem.contactorPhone}}</div>
+                    <h4>{{csecondHandItem.name}}</h4>
+                    <div>数量：{{csecondHandItem.state}}</div>
+                    <div>Tel：{{csecondHandItem.contactorPhone}}</div>
                 </div>
             </div>
         </el-dialog>
@@ -76,7 +77,6 @@
         created() {
             this.csecondHandItem = this.secondHandItem;
             window.csecondHandItem = this.secondHandItem;
-            console.log(`init csecondHandItem....`);
             // this._getExchangeEquip();
         },
         // watch:{
@@ -145,17 +145,15 @@
                             "equipId":this.csecondHandItem.picInfoList[item].equipId,
                             "countryId":this.csecondHandItem.picInfoList[item].countryId
                         }).then((exchangeEquipImg) => {
-                            this.imageUrlL.push(exchangeEquipImg)
+                            this.imageUrlL.push(exchangeEquipImg);
+                            console.log(`this.imageUrlL.length:${this.imageUrlL.length}`);
                         })
                     }
                 }
-                window.imageUrlLL = this.imageUrlL;
-                console.log(`_getExchangeEquip this.imageUrlLL:${this.imageUrlL.length}`);
             }
         },
         mounted(){
             this._getExchangeEquip()
-            console.log(`mounted....`);
         }
     }
 </script>
@@ -174,6 +172,13 @@
         overflow: hidden;
         display: inline-block;
         position: relative;
+        color:black;
+    }
+    .second_hand_item .second_hand_img .noimage{
+        width:100%;
+        height:100%;
+        line-height: 72px;
+        text-align: center;
     }
     .second_hand_item .second_hand_img img {
         transition: all .4s ease-in-out;
@@ -215,6 +220,13 @@
     .dialog-image-desc{
         float: left;
         margin: 0;
+        width:370px;
+    }
+    .el-carousel--horizontal{
+        height: 250px;
+    }
+    .el-carousel__container{
+        height: 250px;
     }
 </style>
 
