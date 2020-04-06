@@ -33,7 +33,7 @@ export function get(){
             return axios({
                 method: "GET",
                 url: `${url}`,
-                params,
+                data: params,
                 headers: {
                     'token': '1111111'
                 }
@@ -51,7 +51,7 @@ export function post(){
             return axios({
                 method: "POST",
                 url: `${url}`,
-                params,
+                data: params,
                 headers: {
                     'token': '1111111'
                 }

@@ -14,6 +14,11 @@
                     联系电话：{{companyInfoContent.phone}}
                 </el-col>
             </el-row>
+            <el-row>
+                <el-col>
+                    <router-link to="/uploadData" class="past_information">发布信息</router-link>
+                </el-col>
+            </el-row>
         </div>
     </div>
 </template>
@@ -54,12 +59,16 @@
         text-align:left;
         margin:0;
         background-color: #E6EFFE;
-        padding: 15px 0 15px 5px;
+        padding: 10px 0 10px 5px;
     }
     .company_content{
         text-align: left;
         font-size: 13px;
         padding:15px 15px;
+    }
+    .past_information{
+        text-decoration:none;
+        color:red;
     }
 </style>
 

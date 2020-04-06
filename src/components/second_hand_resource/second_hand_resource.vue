@@ -234,7 +234,7 @@
     .el-link--inner{
         display:inline-block;
         padding: 2px 5px;
-        font-size:16px;
+        font-size:12px;
     }
     .el-table__row .cell{
         width:100%;

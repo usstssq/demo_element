@@ -2,10 +2,10 @@
     <div class="product_industry">
         <comTitle :title="comTitle" :linkInfo="linkInfo"></comTitle>
         <div class="product_industry_content">
-            <el-row>
-                <el-col v-for="(factory,index) in cdata_list.general" :key="factory.common.companyId" :span="4">
-                    <el-link class="imgscale-top" :underline="false" :href="'/companyDetail/'+factory.common.companyId" target="_blank" type="primary">
-                        <img :src="'/'+factory.common.companyId" width="16" height="16" class="nav-icon"></img>
+            <el-row style="margin:16px 0;">
+                <el-col v-for="(factory,index) in cdata_list.general" :key="factory.common.companyId" :span="2">
+                    <el-link class="imgscale-top" :underline="false" :href="'/companyDetail/'+factory.common.companyId" target="_blank">
+                        <!-- <img :src="'/'+factory.common.companyId" width="16" height="16" class="nav-icon"></img> -->
                         {{factory.common.shortName}}
                     </el-link>
                 </el-col>
@@ -13,7 +13,7 @@
             <el-row>
                 <el-col class = "vip" v-for="(factory,index) in cdata_list.vip" :span="4">
                     <div class="vip_content imgscale-top boxshodow-hover">
-                        <a :underline="false" href="www.baidu.com" target="_blank" type="primary">
+                        <a :underline="false" href="www.baidu.com" target="_blank">
                             <div class="img_box">
                                 <div class="imgscale">
                                     <img :src="imageUrlL[index]" :alt="factory.common.shortName">
@@ -21,12 +21,14 @@
                             </div>
                             <div class="title_box">
                                 <div class="title ellipsis-2">
-                                    {{factory.common.shortName}}
+                                    <!-- {{factory.common.shortName}} -->
+                                    广告位
                                 </div>
                             </div>
                             <div class="com_tel">
                                 <div class="ellipsis-2">
-                                    发财热线: {{factory.onsite.onsiteContactPeople}}
+                                    <!-- 发财热线: {{factory.onsite.onsiteContactPeople}} -->
+                                    联系电话 0774477777
                                 </div>
                             </div>
                         </a>
@@ -300,10 +302,10 @@
     .el-link--inner{
         display:inline-block;
         padding: 2px 5px;
-        font-size:16px;
+        font-size:12px;
     }
     .product_industry_content{
-        margin:20px 20px;
+        margin:0px 20px;
     }
     .nav-icon{
         margin-left:15px;
@@ -311,25 +313,29 @@
     }
     .vip{
         margin: 0;
-        padding: 0 0 16px 16px;
+        padding: 0 0 16px 10px;
         height: 74px;
     }
     .vip_content{
         position: relative;
         border-radius: 8px;
-        background-color: #5284E6;
+        background-color: #fff;
         height:100%;
-        box-shadow: 0 1px 4px 0 rgba(0,0,0,.1);        
+        /*box-shadow: 0 1px 4px 0 rgba(0,0,0,.1);      */
+        box-shadow: 0 4px 12px 2px rgba(0,0,0,.1);  
     }
     .vip a{
         display:block;
         text-decoration:none;
-        /*color:#409EFF;*/
-        color:#fff;
+        color:#606266;
+        /*color:#fff;*/
         padding-left:40%;
         width:60%;
         height:100%;
         font-size:8px;
+    }
+    .vip_content:hover{
+        border-radius: 8px;
     }
     .product_industry_content a:{
         color:black;
@@ -340,19 +346,21 @@
     /*}*/
     .product_industry_content a:hover{
         background-color:#FFFFFF;
+        border-radius: 8px;
     }
     .product_industry_content .vip a:hover{
         background-color:#409EFF;
+        color:#fff;
         /*color:black;*/
     }
     .img_box {
         /*width: 40%;*/
-        width:32px;
-        height:32px;
+        width:48px;
+        height:48px;
         position: absolute;
         left: 0;
         top: 0;
-        padding: 10px;
+        padding: 4px 2px 2px 2px;
     }
     .title_box{
         padding-top:10px;
@@ -380,7 +388,9 @@
         -webkit-box-orient: vertical;
     }
     .boxshodow-hover:hover {
-        box-shadow: 0 2px 8px 0 rgba(0,0,0,.1)!important
+        color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px 2px rgba(0,0,0,.1)!important
     }
     .imgscale-top:hover img {
         transform: scale(1.3)

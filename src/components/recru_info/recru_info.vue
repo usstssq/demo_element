@@ -3,7 +3,7 @@
         <comTitle :title="comTitle" :linkInfo="linkInfo"></comTitle>
         <ul>
             <li v-for="recru_info_item in recruInfoArr">
-                <el-link class="imgscale-top" :underline="false" :href="'/recru_info/'+recru_info_item.id" target="_blank" type="primary">
+                <el-link class="imgscale-top" :underline="false" :href="'/recru_info/'+recru_info_item.id" target="_blank">
                         {{recru_info_item.title}}({{formate_date(recru_info_item.modifyDate)}})
                 </el-link>
             </li>

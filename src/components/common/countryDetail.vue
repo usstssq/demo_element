@@ -353,7 +353,10 @@
         methods: {
             _getProdList(){
                 let params = {
-                    "top_n":10
+                    "Page":{
+                        "size":100,
+                        "index":0
+                    }
                 },
                 url = `trade/main_content/${this.countryId}/get_prod_panel`;
                 getProdList(url,params).then((prodlist)=>{
@@ -364,42 +367,60 @@
             },
             _getProdVipPanel(){
                 let params = {
-                    "top_n":10
+                    "Page":{
+                        "size":6,
+                        "index":0
+                    }
                 },
                 url = `trade/main_content/${this.countryId}/get_prod_vip_panel`;
                 getProdVipPanel(url,params).then((prodlist)=>{
-                    this.manufacture_list.vip = prodlist;
+                    if(prodlist){
+                        this.manufacture_list.vip = prodlist.slice(0,6);
+                    }                    
                     // window.prodlist = prodlist;
                     // console.log(prodlist);
                 })                
             },
             _getEquipmentList(){
                 let params = {
-                    "top_n":10
+                    "Page":{
+                        "size":100,
+                        "index":0
+                    }
+                    // "top_n":10
                 },
-                url = `trade/main_content/${this.countryId}/get_equip_panel`
+                url = `trade/main_content/${this.countryId}/get_equip_panel`;
                 getEquipList(url,params).then((equiplist)=>{
+                    this.equipment_list.general = equiplist;
                     // this.equipment_list.vip = equiplist;
                     // 工程设备机械目前后台没有vip的接口，前端先不显示vip接口
-                    this.equipment_list.general = equiplist;
                 })
             },
             _getEquipmentVipList(){
                 let params = {
-                    "top_n":10
+                    "Page":{
+                        "size":6,
+                        "index":0
+                    }
                 },
-                url = `trade/main_content/${this.countryId}/get_equip_vip_panel`
+                url = `trade/main_content/${this.countryId}/get_equip_vip_panel`;
                 getEquipList(url,params).then((equiplist)=>{
                     // this.equipment_list.vip = equiplist;
                     // 工程设备机械目前后台没有vip的接口，前端先不显示vip接口
-                    this.equipment_list.vip = equiplist;
+                    if(equiplist){
+                        this.equipment_list.vip = equiplist.slice(0,6);
+                    }
                 })
             },
             _getOverSeaList(){
                 let params = {
-                    "top_n":10
+                    "Page":{
+                        "size":100,
+                        "index":0
+                    }
+                    // "top_n":10
                 },
-                url = `trade/main_content/${this.countryId}/get_oversea_panel`
+                url = `trade/main_content/${this.countryId}/get_oversea_panel`;
                 getOverSeaList(url,params).then((oversealist)=>{
                     // this.equipment_list.vip = equiplist;
                     // 工程设备机械目前后台没有vip的接口，前端先不显示vip接口
@@ -408,17 +429,22 @@
             },
             _getOverSeaVipList(){
                 let params = {
-                    "top_n":10
+                    "Page":{
+                        "size":6,
+                        "index":0
+                    }
                 },
-                url = `trade/main_content/${this.countryId}/get_oversea_vip_panel`
+                url = `trade/main_content/${this.countryId}/get_oversea_vip_panel`;
                 getOverSeaList(url,params).then((equiplist)=>{
+                    if(equiplist){
+                        this.oversea_list.vip = equiplist.slice(0,6);
+                    }
                     // this.equipment_list.vip = equiplist;
                     // 工程设备机械目前后台没有vip的接口，前端先不显示vip接口
-                    this.oversea_list.vip = equiplist;
                 })
             },
             _getCountryInfo() {
-                let url = `trade/main_content/${this.countryId}/get_country_info`
+                let url = `trade/main_content/${this.countryId}/get_country_info`;
                 getCountryInfo(url).then((countryInfo) => {
                     this.country_info_content = countryInfo.introInfo,
                     this.countryin_info_title = countryInfo.nameCh
@@ -427,14 +453,14 @@
                 })
             },
             _getExchangeEquip() {
-                let url = `trade/main_content/${this.countryId}/get_exchange_equip_full_info`
+                let url = `trade/main_content/${this.countryId}/get_exchange_equip_full_info`;
                 // let url = `trade/main_content/1/get_exchange_equip_full_info`
                 getExchangeEquip(url).then((exchangeEquipInfo) => {
                     this.second_hand_item_list = exchangeEquipInfo
                 })
             },
             _getNews(){
-                let url = `trade/main_content/${this.countryId}/get_news`
+                let url = `trade/main_content/${this.countryId}/get_news`;
                 getNews(url).then((news)=>{
                     // this.news_title = news.news_title,
                     this.news_arr = news

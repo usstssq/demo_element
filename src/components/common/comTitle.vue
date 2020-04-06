@@ -36,7 +36,7 @@
 <style>
     .com_title{
         background-color:#F8F8F8;
-        padding:15px 0;
+        padding:10px 0;
     }
     .com_title h3{
         margin:0 0;

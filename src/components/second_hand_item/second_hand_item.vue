@@ -15,7 +15,7 @@
                 <div class="dialog-image-block">
                     <el-carousel>
                         <el-carousel-item v-for="(item,index) in imageUrlL" :key="item+index">
-                            <img :src="item" v-if="item" type="image/jpeg" width="100%" height="250px">
+                            <img stretch="true" :src="item" v-if="item" type="image/jpeg">
                         </el-carousel-item>
                     </el-carousel>
                 </div>
@@ -216,6 +216,12 @@
         overflow: hidden;
         float: left;
         margin-right: 20px;
+    }
+    .dialog-image-block img{
+        max-height: 100%;
+        width: auto;
+        /*max-width:100%; */
+        /*height:auto;*/
     }
     .dialog-image-desc{
         float: left;
